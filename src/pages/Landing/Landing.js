@@ -47,11 +47,17 @@ const regisSchema = Yup.object({
 
 export default function Landing() {
   const history = useHistory();
+  const [login, setLogin] = useState(true);
+  const [regis, setRegis] = useState(false);
 
   const onSwitchRegis = () => {
+    setLogin(false);
+    setRegis(true);
     document.querySelector(".container").classList.add("sign-up-mode");
   };
   const onSwitchLogin = () => {
+    setLogin(true);
+    setRegis(false);
     document.querySelector(".container").classList.remove("sign-up-mode");
   };
 
@@ -143,46 +149,51 @@ export default function Landing() {
     //   </CardContent>
     // </Card>
     <Card className="container">
-      <Formik
-        initialValues={initialValuesLogin}
-        validationSchema={loginSchema}
-        onSubmit={() => history.push("/home")}
-      >
-        {(formik) => (
-          <div className="forms-container">
-            <div className="signin-signup">
-              <Form action="#" className="sign-in-form">
-                <h2 className="title">Sign in</h2>
-                <TextField
-                  id="standard-basic"
-                  label="Email"
-                  name="email"
-                  fullWidth
-                  value={formik.values.email}
-                  onChange={formik.handleChange}
-                  error={formik.touched.email && Boolean(formik.errors.email)}
-                  helperText={formik.touched.email && formik.errors.email}
-                />
+      {login === true && (
+        <Formik
+          initialValues={initialValuesLogin}
+          validationSchema={loginSchema}
+          onSubmit={() => history.push("/home")}
+        >
+          {(formik) => (
+            <div className="forms-container">
+              <div className="signin-signup">
+                <Form action="#" className="sign-in-form">
+                  <h2 className="title">Sign in</h2>
+                  <TextField
+                    id="standard-basic"
+                    label="Email"
+                    name="email"
+                    fullWidth
+                    value={formik.values.email}
+                    onChange={formik.handleChange}
+                    error={formik.touched.email && Boolean(formik.errors.email)}
+                    helperText={formik.touched.email && formik.errors.email}
+                  />
 
-                <TextField
-                  id="standard-basic"
-                  label="Password"
-                  type="password"
-                  name="password"
-                  fullWidth
-                  value={formik.values.password}
-                  onChange={formik.handleChange}
-                  error={
-                    formik.touched.password && Boolean(formik.errors.password)
-                  }
-                  helperText={formik.touched.password && formik.errors.password}
-                />
+                  <TextField
+                    id="standard-basic"
+                    label="Password"
+                    type="password"
+                    name="password"
+                    fullWidth
+                    value={formik.values.password}
+                    onChange={formik.handleChange}
+                    error={
+                      formik.touched.password && Boolean(formik.errors.password)
+                    }
+                    helperText={
+                      formik.touched.password && formik.errors.password
+                    }
+                  />
 
-                <button type="submit" className="btn">
-                  Sign In
-                </button>
-                <p className="social-text">Or Sign in with social platforms</p>
-                {/* <div className="social-media">
+                  <button type="submit" className="btn">
+                    Sign In
+                  </button>
+                  <p className="social-text">
+                    Or Sign in with social platforms
+                  </p>
+                  {/* <div className="social-media">
               <a href="#" className="social-icon">
                 <i className="fab fa-facebook-f"></i>
               </a>
@@ -196,80 +207,88 @@ export default function Landing() {
                 <i className="fab fa-linkedin-in"></i>
               </a>
             </div> */}
-              </Form>
+                </Form>
+              </div>
             </div>
-          </div>
-        )}
-      </Formik>
+          )}
+        </Formik>
+      )}
 
-      <Formik
-        initialValues={initialValuesRegis}
-        validationSchema={regisSchema}
-        onSubmit={() => history.push("/home")}
-      >
-        {(formik) => (
-          <div className="forms-container">
-            <div className="signin-signup">
-              <Form action="#" className="sign-up-form">
-                <h2 className="title">Sign up</h2>
-                <TextField
-                  id="standard-basic"
-                  label="Fullname"
-                  name="fullname"
-                  fullWidth={true}
-                  value={formik.values.fullname}
-                  onChange={formik.handleChange}
-                  error={
-                    formik.touched.fullname && Boolean(formik.errors.fullname)
-                  }
-                  helperText={formik.touched.fullname && formik.errors.fullname}
-                />
-                <TextField
-                  id="standard-basic"
-                  label="Email"
-                  name="email"
-                  fullWidth
-                  value={formik.values.email}
-                  onChange={formik.handleChange}
-                  error={formik.touched.email && Boolean(formik.errors.email)}
-                  helperText={formik.touched.email && formik.errors.email}
-                />
+      {regis === true && (
+        <Formik
+          initialValues={initialValuesRegis}
+          validationSchema={regisSchema}
+          onSubmit={() => history.push("/home")}
+        >
+          {(formik) => (
+            <div className="forms-container">
+              <div className="signin-signup">
+                <Form action="#" className="sign-up-form">
+                  <h2 className="title">Sign up</h2>
+                  <TextField
+                    id="standard-basic"
+                    label="Fullname"
+                    name="fullname"
+                    fullWidth={true}
+                    value={formik.values.fullname}
+                    onChange={formik.handleChange}
+                    error={
+                      formik.touched.fullname && Boolean(formik.errors.fullname)
+                    }
+                    helperText={
+                      formik.touched.fullname && formik.errors.fullname
+                    }
+                  />
+                  <TextField
+                    id="standard-basic"
+                    label="Email"
+                    name="email"
+                    fullWidth
+                    value={formik.values.email}
+                    onChange={formik.handleChange}
+                    error={formik.touched.email && Boolean(formik.errors.email)}
+                    helperText={formik.touched.email && formik.errors.email}
+                  />
 
-                <TextField
-                  id="standard-basic"
-                  label="Password"
-                  type="password"
-                  name="password"
-                  fullWidth
-                  value={formik.values.password}
-                  onChange={formik.handleChange}
-                  error={
-                    formik.touched.password && Boolean(formik.errors.password)
-                  }
-                  helperText={formik.touched.password && formik.errors.password}
-                />
-                <TextField
-                  id="standard-basic"
-                  label="Confirm Password"
-                  type="password"
-                  name="confirmPassword"
-                  fullWidth
-                  value={formik.values.confirmPassword}
-                  onChange={formik.handleChange}
-                  error={
-                    formik.touched.confirmPassword &&
-                    Boolean(formik.errors.confirmPassword)
-                  }
-                  helperText={
-                    formik.touched.confirmPassword &&
-                    formik.errors.confirmPassword
-                  }
-                />
-                <button type="submit" className="btn">
-                  Sing Up
-                </button>
-                <p className="social-text">Or Sign up with social platforms</p>
-                {/* <div className="social-media">
+                  <TextField
+                    id="standard-basic"
+                    label="Password"
+                    type="password"
+                    name="password"
+                    fullWidth
+                    value={formik.values.password}
+                    onChange={formik.handleChange}
+                    error={
+                      formik.touched.password && Boolean(formik.errors.password)
+                    }
+                    helperText={
+                      formik.touched.password && formik.errors.password
+                    }
+                  />
+                  <TextField
+                    id="standard-basic"
+                    label="Confirm Password"
+                    type="password"
+                    name="confirmPassword"
+                    fullWidth
+                    value={formik.values.confirmPassword}
+                    onChange={formik.handleChange}
+                    error={
+                      formik.touched.confirmPassword &&
+                      Boolean(formik.errors.confirmPassword)
+                    }
+                    helperText={
+                      formik.touched.confirmPassword &&
+                      formik.errors.confirmPassword
+                    }
+                  />
+                  <button type="submit" className="btn">
+                    Sing Up
+                  </button>
+                  <p className="social-text">
+                    Or Sign up with social platforms
+                  </p>
+                  {/* <div className="social-media">
               <a href="#" className="social-icon">
                 <i className="fab fa-facebook-f"></i>
               </a>
@@ -283,11 +302,12 @@ export default function Landing() {
                 <i className="fab fa-linkedin-in"></i>
               </a>
             </div> */}
-              </Form>
+                </Form>
+              </div>
             </div>
-          </div>
-        )}
-      </Formik>
+          )}
+        </Formik>
+      )}
 
       <div className="panels-container">
         <div className="panel left-panel">
