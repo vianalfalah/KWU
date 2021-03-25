@@ -4,6 +4,7 @@ import {
   Divider,
   Fade,
   Grid,
+  Hidden,
   Paper,
   Popover,
   Popper,
@@ -21,10 +22,12 @@ import Badge from "@material-ui/core/Badge";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import SearchIcon from "@material-ui/icons/Search";
+import { borders } from "@material-ui/system";
 
 export default function Navbar() {
   const history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [search, setSearch] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
@@ -36,6 +39,11 @@ export default function Navbar() {
 
   const handleMenuClose = () => {
     setAnchorEl(null);
+    setSearch(null);
+  };
+
+  const handleOpenSearch = (event) => {
+    setSearch(search ? null : event.currentTarget);
   };
 
   const onSubmitLogout = () => {
@@ -44,7 +52,8 @@ export default function Navbar() {
   };
 
   const open = Boolean(anchorEl);
-  const id = open ? "simple-popover" : undefined;
+  const openSearch = Boolean(search);
+  const id = open || openSearch ? "simple-popover" : undefined;
 
   return (
     <>
@@ -56,21 +65,53 @@ export default function Navbar() {
         <Toolbar>
           <Grid container direction="row" justify="center" alignItems="center">
             <Typography variant="h5" gutterBottom>
-              Judul
+              Sobu
             </Typography>
           </Grid>
           <Grid container direction="row" justify="center" alignItems="center">
-            <div className="input-search">
-              <IconButton type="submit" aria-label="search">
-                <SearchIcon />
-              </IconButton>
-              <InputBase
-                placeholder="Search"
-                inputProps={{ "aria-label": "search" }}
-                style={{ margin: 10 }}
-              />
-              <Divider orientation="vertical" />
-            </div>
+            <Hidden xsDown>
+              <div className="input-search">
+                <IconButton type="submit" aria-label="search">
+                  <SearchIcon />
+                </IconButton>
+                <InputBase
+                  placeholder="Search"
+                  inputProps={{ "aria-label": "search" }}
+                  style={{ margin: 10 }}
+                />
+              </div>
+            </Hidden>
+            <Hidden only={["sm", "md", "xl", "lg"]}>
+              <div className="input-search">
+                <IconButton
+                  type="submit"
+                  aria-label="search"
+                  onClick={handleOpenSearch}
+                >
+                  <SearchIcon />
+                </IconButton>
+                <Popover
+                  id={id}
+                  open={openSearch}
+                  anchorEl={search}
+                  onClose={handleMenuClose}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "center",
+                  }}
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "center",
+                  }}
+                >
+                  <InputBase
+                    placeholder="Search"
+                    inputProps={{ "aria-label": "search" }}
+                    style={{ margin: 10 }}
+                  />
+                </Popover>
+              </div>
+            </Hidden>
           </Grid>
           <Grid
             container

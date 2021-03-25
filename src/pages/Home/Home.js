@@ -49,7 +49,7 @@ class Home extends Component {
   };
 
   handleCommetClick = () => {
-    this.setState({ comment: true });
+    this.setState({ comment: !this.state.comment });
   };
   render() {
     let { moreInfo, comment } = this.state;
@@ -57,7 +57,11 @@ class Home extends Component {
     return (
       <Card className="home-container" raised={true}>
         <CardHeader
-          avatar={<Avatar aria-label="recipe">R</Avatar>}
+          avatar={
+            <Avatar aria-label="recipe" style={{ backgroundColor: "red" }}>
+              R
+            </Avatar>
+          }
           action={
             <IconButton aria-label="settings">
               <MoreVert />
@@ -142,26 +146,26 @@ class Home extends Component {
         <Collapse in={comment} timeout="auto" unmountOnExit>
           <Grid container justify="start-end" alignContent="center">
             <Grid item xs={2} sm={2}>
-              <i className="fa fa-user-circle"></i>
+              <i className="fa fa-user-circle" style={{ fontSize: 20 }}></i>
             </Grid>
             <Grid item xs={10} sm={10}>
-              <Typography align="justify">Comment 1</Typography>
+              <Typography align="justify">Name 1</Typography>
             </Grid>
           </Grid>
           <Grid container justify="start-end" alignContent="center">
             <Grid item xs={2} sm={2}>
-              <i className="fa fa-user-circle"></i>
+              <i className="fa fa-user-circle" style={{ fontSize: 20 }}></i>
             </Grid>
             <Grid item xs={10} sm={10}>
-              <Typography align="justify">Comment 1</Typography>
+              <Typography align="justify">Name 2</Typography>
             </Grid>
           </Grid>
           <Grid container justify="start-end" alignContent="center">
             <Grid item xs={2} sm={2}>
-              <i className="fa fa-user-circle"></i>
+              <i className="fa fa-user-circle" style={{ fontSize: 20 }}></i>
             </Grid>
             <Grid item xs={10} sm={10}>
-              <Typography align="justify">Comment 1</Typography>
+              <Typography align="justify">Name 3</Typography>
             </Grid>
           </Grid>
           <Grid

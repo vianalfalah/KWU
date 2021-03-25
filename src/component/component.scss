@@ -2,15 +2,22 @@
   height: auto;
   background-color: #327f49;
   .input-search {
-    border: 1px solid black;
-    border-radius: 5px;
+    border: 50% solid black;
+    border-radius: 15px;
     height: 35px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: blanchedalmond;
   }
+
   .menu-item {
     cursor: pointer;
+  }
+  .MuiPopover-root {
+    border-radius: 15px;
+    .MuiPopover-paper {
+      border-radius: 15px;
+    }
   }
 }
