@@ -38,7 +38,7 @@ export default function Navbar() {
 
   const onSubmitLogout = () => {
     // logout();
-    history.push("/landing");
+    history.push("/");
   };
 
   const open = Boolean(anchorEl);
