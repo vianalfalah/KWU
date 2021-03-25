@@ -18,6 +18,12 @@ import {
   TextField,
   Icon,
   Box,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  Button,
+  DialogActions,
 } from "@material-ui/core";
 import {
   Favorite,
@@ -37,6 +43,7 @@ class Home extends Component {
     this.state = {
       moreInfo: false,
       comment: false,
+      openShare: false,
     };
   }
 
@@ -45,15 +52,22 @@ class Home extends Component {
     this.props.history.push("/");
   };
 
+  openShared = () => {
+    let { openShare } = this.state;
+    this.setState({ openShare: !openShare });
+  };
+
   handleExpandClick = () => {
-    this.setState({ moreInfo: !this.state.moreInfo });
+    let { moreInfo } = this.state;
+    this.setState({ moreInfo: !moreInfo });
   };
 
   handleCommetClick = () => {
-    this.setState({ comment: !this.state.comment });
+    let { comment } = this.state;
+    this.setState({ comment: !comment });
   };
   render() {
-    let { moreInfo, comment } = this.state;
+    let { moreInfo, comment, openShare } = this.state;
 
     return (
       <>
@@ -108,7 +122,7 @@ class Home extends Component {
               justify="flex-end"
               alignItems="center"
             >
-              <IconButton aria-label="share">
+              <IconButton aria-label="share" onClick={() => this.openShared()}>
                 <i className="fa fa-share"></i>
               </IconButton>
             </Grid>
@@ -193,6 +207,42 @@ class Home extends Component {
             </Grid>
           </Collapse>
         </Card>
+
+        <Dialog
+          open={openShare}
+          onClose={() => this.openShared()}
+          aria-labelledby="responsive-dialog-title"
+        >
+          <DialogTitle id="responsive-dialog-title">
+            <Typography align="center">Share to...</Typography>
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              <div className="social-media">
+                <a href="#" className="social-icon">
+                  <i className="fa fa-facebook-f"></i>
+                </a>
+                <a href="#" className="social-icon">
+                  <i className="fa fa-twitter"></i>
+                </a>
+                <a href="#" className="social-icon">
+                  <i className="fa fa-google"></i>
+                </a>
+                <a href="#" className="social-icon">
+                  <i className="fa fa-whatsapp"></i>
+                </a>
+              </div>
+              <div className="social-media" style={{ marginTop: 10 }}>
+                <a href="#" className="social-icon">
+                  <i className="fa fa-envelope-o"></i>
+                </a>
+                <a href="#" className="social-icon">
+                  <i className="fa fa-link"></i>
+                </a>
+              </div>
+            </DialogContentText>
+          </DialogContent>
+        </Dialog>
       </>
     );
   }

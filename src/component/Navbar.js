@@ -49,7 +49,7 @@ export default function Navbar() {
     <>
       <AppBar
         position="static"
-        style={{ backgroundColor: "#327f49" }}
+        style={{ backgroundColor: "#00acee" }}
         className="navbar"
       >
         <Toolbar>
