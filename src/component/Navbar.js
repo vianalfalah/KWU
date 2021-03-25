@@ -1,37 +1,27 @@
 import {
   Box,
-  Card,
-  Divider,
-  Fade,
   Grid,
   Hidden,
-  Paper,
   Popover,
-  Popper,
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton,
+  InputBase,
+  Badge,
 } from "@material-ui/core";
 import React from "react";
 import { useHistory } from "react-router";
 import "./component.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import InputBase from "@material-ui/core/InputBase";
-import Badge from "@material-ui/core/Badge";
+
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import SearchIcon from "@material-ui/icons/Search";
-import { borders } from "@material-ui/system";
 
 export default function Navbar() {
   const history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [search, setSearch] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);

@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Landing from "./pages/Landing/Landing";
 import Home from "./pages/Home/Home";
 import { PrivateRoute } from "./component/PrivateRoute";
-import Navbar from "./component/Navbar";
 import { dom } from "@fortawesome/fontawesome-svg-core";
 
 dom.watch();
@@ -16,11 +15,9 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path="/landing" component={Landing} />
-          <div>
-            <Navbar />
-            <Route exact path="/home" component={Home} />
-          </div>
+          <Route exact path="/" component={Landing} />
+
+          <Route exact path="/home" component={Home} />
         </Switch>
       </Router>
     </div>
