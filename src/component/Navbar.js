@@ -17,23 +17,34 @@ import "./component.scss";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import SearchIcon from "@material-ui/icons/Search";
+import Message from "../pages/Message/Message";
 
 export default function Navbar() {
   const history = useHistory();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [search, setSearch] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState(false);
+  const [search, setSearch] = React.useState(false);
+  const [notif, setNotif] = React.useState(false);
+  const [message, setMessage] = React.useState(false);
 
   const handleProfileMenuOpen = (event) => {
-    setAnchorEl(anchorEl ? null : event.currentTarget);
+    setAnchorEl(anchorEl ? false : event.currentTarget);
   };
 
   const handleMenuClose = () => {
-    setAnchorEl(null);
-    setSearch(null);
+    setAnchorEl(false);
+    setSearch(false);
+    setNotif(false);
+    setMessage(false);
   };
 
+  const handleOpenMessage = (event) => {
+    setMessage(message ? false : event.currentTarget);
+  };
+  const handleOpenNotif = (event) => {
+    setNotif(notif ? false : event.currentTarget);
+  };
   const handleOpenSearch = (event) => {
-    setSearch(search ? null : event.currentTarget);
+    setSearch(search ? false : event.currentTarget);
   };
 
   const onSubmitLogout = () => {
@@ -43,7 +54,12 @@ export default function Navbar() {
 
   const open = Boolean(anchorEl);
   const openSearch = Boolean(search);
-  const id = open || openSearch ? "simple-popover" : undefined;
+  const openNotif = Boolean(notif);
+  const openMessage = Boolean(message);
+  const id =
+    open || openSearch || openNotif || openMessage
+      ? "simple-popover"
+      : undefined;
 
   return (
     <>
@@ -109,16 +125,54 @@ export default function Navbar() {
             justify="start-end"
             alignContent="center"
           >
-            <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <i className="fa fa-envelope"></i>
-              </Badge>
-            </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
+            <Hidden only={["sm", "md", "xl", "lg"]}>
+              <IconButton
+                aria-label="show 4 new mails"
+                color="inherit"
+                onClick={handleOpenMessage}
+              >
+                <Badge badgeContent={4} color="secondary">
+                  <i className="fa fa-envelope"></i>
+                </Badge>
+              </IconButton>
+            </Hidden>
+            <IconButton
+              aria-label="show 17 new notifications"
+              color="inherit"
+              onClick={handleOpenNotif}
+            >
               <Badge badgeContent={17} color="secondary">
                 <i className="fa fa-bell"></i>
               </Badge>
             </IconButton>
+            <Popover
+              id={id}
+              open={openNotif}
+              anchorEl={notif}
+              onClose={handleMenuClose}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "center",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "center",
+              }}
+            >
+              <Box p={2} style={{ width: 400 }}>
+                <Typography style={{ cursor: "pointer", marginBottom: 10 }}>
+                  <span className="fa fa-user-circle"></span> Notif 1
+                </Typography>
+                <Typography style={{ cursor: "pointer", marginBottom: 10 }}>
+                  <span className="fa fa-user-circle"></span> Notif 2
+                </Typography>
+
+                <Typography style={{ cursor: "pointer", marginTop: 10 }}>
+                  <span className="fa fa-user-circle"></span> Notif 3
+                </Typography>
+              </Box>
+            </Popover>
+
             <IconButton
               edge="end"
               aria-label="account of current user"
@@ -156,6 +210,25 @@ export default function Navbar() {
                 >
                   <span className="fa fa-sign-out"></span> Log Out
                 </Typography>
+              </Box>
+            </Popover>
+
+            <Popover
+              id={id}
+              open={openMessage}
+              anchorEl={message}
+              onClose={handleMenuClose}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "right",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+            >
+              <Box p={2}>
+                <Message />
               </Box>
             </Popover>
           </Grid>
