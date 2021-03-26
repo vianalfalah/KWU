@@ -1,20 +1,11 @@
 .home-container {
-  max-width: 500px;
-  display: block;
-  margin: 50px auto 50px auto;
-  .card-image {
-    width: 350px;
+  background-image: url("https://i2.wp.com/ideawallpapers.com/wp-content/uploads/2020/04/blue-butterfly-13.jpg?resize=757%2C1485");
+  margin-top: 60px;
+  .message-container {
+    max-width: 500px;
+    display: block;
   }
-  .box-comment {
-    margin-bottom: 10px;
-  }
-}
-.post {
-  padding-right: 30px;
-}
-
-@media screen and (max-width: 650px) {
-  .post {
-    padding: 0 20px;
+  .distance {
+    margin: 50px 0;
   }
 }

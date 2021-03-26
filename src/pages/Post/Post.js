@@ -28,7 +28,7 @@ import {
   MoreVert,
   Send,
 } from "@material-ui/icons";
-
+import "./Post.scss";
 import CardIMG from "../../utils/images/background-landing.jpg";
 
 export default class Post extends Component {
@@ -76,7 +76,7 @@ export default class Post extends Component {
     let { moreInfo, comment, openShare, likeIt, options } = this.state;
     return (
       <div>
-        <Card className="home-container" raised={true}>
+        <Card className="post-container" raised={true}>
           <CardHeader
             avatar={
               <Avatar aria-label="recipe" style={{ backgroundColor: "red" }}>

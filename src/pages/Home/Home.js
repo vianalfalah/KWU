@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import Navbar from "../../component/Navbar";
+import Profile from "../../component/Profile";
 import Message from "../Message/Message";
 import Post from "../Post/Post";
 import "./Home.scss";
@@ -24,35 +25,41 @@ class Home extends Component {
     return (
       <>
         <Navbar />
-
-        <Grid container>
-          <Grid item xs={12} sm container>
-            <Grid item sm={8} container justify="flex-end" className="post">
-              <Post />
-            </Grid>
-            <Hidden xsDown smDown mdDown>
-              <Grid item sm={4}>
-                <Card className="message-container" raised={true}>
-                  <Accordion>
-                    <AccordionSummary
-                      aria-controls="panel1a-content"
-                      id="panel1a-header"
-                    >
-                      <Grid container justify="center">
-                        <Typography align="center">Your Message's</Typography>
-                      </Grid>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      <Typography>
-                        <Message />
-                      </Typography>
-                    </AccordionDetails>
-                  </Accordion>
-                </Card>
+        <Card className="home-container">
+          <Grid container>
+            <Grid item xs={12} sm container>
+              <Hidden xsDown smDown mdDown>
+                <Grid item sm={3}>
+                  <Profile />
+                </Grid>
+              </Hidden>
+              <Grid item sm={5} container justify="center">
+                <Post />
               </Grid>
-            </Hidden>
+              <Hidden xsDown smDown mdDown>
+                <Grid item sm={4}>
+                  <Card className="message-container distance" raised={true}>
+                    <Accordion>
+                      <AccordionSummary
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                      >
+                        <Grid container justify="center">
+                          <Typography align="center">Your Message's</Typography>
+                        </Grid>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <Typography>
+                          <Message />
+                        </Typography>
+                      </AccordionDetails>
+                    </Accordion>
+                  </Card>
+                </Grid>
+              </Hidden>
+            </Grid>
           </Grid>
-        </Grid>
+        </Card>
       </>
     );
   }

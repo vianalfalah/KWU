@@ -9,6 +9,10 @@ import {
   IconButton,
   InputBase,
   Badge,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
 } from "@material-ui/core";
 import React from "react";
 import { useHistory } from "react-router";
@@ -67,6 +71,7 @@ export default function Navbar() {
         position="static"
         style={{ backgroundColor: "#00acee" }}
         className="navbar"
+        position="fixed"
       >
         <Toolbar>
           <Grid container direction="row" justify="center" alignItems="center">
@@ -166,7 +171,6 @@ export default function Navbar() {
                 <Typography style={{ cursor: "pointer", marginBottom: 10 }}>
                   <span className="fa fa-user-circle"></span> Notif 2
                 </Typography>
-
                 <Typography style={{ cursor: "pointer", marginTop: 10 }}>
                   <span className="fa fa-user-circle"></span> Notif 3
                 </Typography>
@@ -196,21 +200,27 @@ export default function Navbar() {
                 horizontal: "right",
               }}
             >
-              <Box p={2}>
-                <Typography style={{ cursor: "pointer", marginBottom: 10 }}>
-                  <span className="fa fa-user-circle"></span> Profile
-                </Typography>
-                <Typography style={{ cursor: "pointer", marginBottom: 10 }}>
-                  <span className="fa fa-cog"></span> Setting Account
-                </Typography>
+              <List component="nav" aria-label="main mailbox folders">
+                <ListItem button>
+                  <ListItemIcon>
+                    <span className="fa fa-user-circle"></span>
+                  </ListItemIcon>
+                  <ListItemText primary="Profile" />
+                </ListItem>
+                <ListItem button>
+                  <ListItemIcon>
+                    <span className="fa fa-cogs"></span>
+                  </ListItemIcon>
+                  <ListItemText primary="Account Setting" />
+                </ListItem>
                 <hr />
-                <Typography
-                  style={{ cursor: "pointer", marginTop: 10 }}
-                  onClick={onSubmitLogout}
-                >
-                  <span className="fa fa-sign-out"></span> Log Out
-                </Typography>
-              </Box>
+                <ListItem button onClick={onSubmitLogout}>
+                  <ListItemIcon>
+                    <span className="fa fa-sign-out"></span>
+                  </ListItemIcon>
+                  <ListItemText primary="Log Out" />
+                </ListItem>
+              </List>
             </Popover>
 
             <Popover
