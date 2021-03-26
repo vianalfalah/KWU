@@ -127,7 +127,7 @@ export default function Navbar() {
           <Grid
             container
             directions="row"
-            justify="start-end"
+            justify="center"
             alignContent="center"
           >
             <Hidden only={["sm", "md", "xl", "lg"]}>

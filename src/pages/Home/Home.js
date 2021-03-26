@@ -30,16 +30,27 @@ class Home extends Component {
             <Grid item xs={12} sm container>
               <Hidden xsDown smDown mdDown>
                 <Grid item sm={3}>
-                  <Profile />
+                  <Card style={{ position: "fixed" }} className="distance">
+                    <Profile />
+                  </Card>
                 </Grid>
               </Hidden>
-              <Grid item sm={5} container justify="center">
+              <Grid item sm={5} style={{ marginBottom: 30 }}>
+                <Post />
+                <Post />
+                <Post />
+                <Post />
+                <Post />
+                <Post />
+                <Post />
+                <Post />
+                <Post />
                 <Post />
               </Grid>
-              <Hidden xsDown smDown mdDown>
+              <Hidden xsDown smDown>
                 <Grid item sm={4}>
                   <Card className="message-container distance" raised={true}>
-                    <Accordion>
+                    <Accordion style={{ position: "fixed" }}>
                       <AccordionSummary
                         aria-controls="panel1a-content"
                         id="panel1a-header"
