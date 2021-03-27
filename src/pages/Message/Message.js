@@ -4,10 +4,13 @@ import {
   AccordionSummary,
   Box,
   Card,
+  CardContent,
   Grid,
   List,
   ListItem,
+  ListItemText,
   Popover,
+  Popper,
   Typography,
 } from "@material-ui/core";
 import React, { Component } from "react";
@@ -24,8 +27,13 @@ export default class Message extends Component {
     };
   }
 
-  handleOpenMessage = () => {
-    this.setState({ notif: true });
+  handleOpenMessage = (e) => {
+    let { notif } = this.state;
+
+    this.setState({ notif: !notif && e.currentTarget });
+
+    console.log(notif);
+    console.log(notif);
   };
 
   handleMessageClose = () => {
@@ -35,30 +43,44 @@ export default class Message extends Component {
   render() {
     let { notif } = this.state;
     return (
-      <>
+      <div>
         <List>
-          <ListItem button onClick={() => this.handleOpenMessage()}>
+          <ListItem button onClick={(e) => this.handleOpenMessage(e)}>
             <Typography>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
               eget.
             </Typography>
           </ListItem>
-          <ListItem button>
+          <ListItem button onClick={(e) => this.handleOpenMessage(e)}>
             <Typography>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
               eget.
             </Typography>
           </ListItem>
-          <ListItem button>
+          <ListItem button onClick={(e) => this.handleOpenMessage(e)}>
             <Typography>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
               eget.
             </Typography>
           </ListItem>
-          <ListItem button>
+          <ListItem button onClick={(e) => this.handleOpenMessage(e)}>
+            <Typography>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+              eget.
+            </Typography>
+          </ListItem>
+          <ListItem button onClick={(e) => this.handleOpenMessage(e)}>
+            <Typography>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+              eget.
+            </Typography>
+          </ListItem>
+          <ListItem button onClick={(e) => this.handleOpenMessage(e)}>
             <Typography>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
@@ -66,34 +88,7 @@ export default class Message extends Component {
             </Typography>
           </ListItem>
         </List>
-
-        <Popover
-          // id={id}
-          open={notif}
-          anchorEl={notif}
-          onClose={() => this.handleMessageClose()}
-          anchorOrigin={{
-            vertical: "center",
-            horizontal: "left",
-          }}
-          transformOrigin={{
-            vertical: "center",
-            horizontal: "right",
-          }}
-        >
-          <Box p={2} style={{ width: 400 }}>
-            <Typography style={{ cursor: "pointer", marginBottom: 10 }}>
-              <span className="fa fa-user-circle"></span> chat 1
-            </Typography>
-            <Typography style={{ cursor: "pointer", marginBottom: 10 }}>
-              <span className="fa fa-user-circle"></span> chat 2
-            </Typography>
-            <Typography style={{ cursor: "pointer", marginTop: 10 }}>
-              <span className="fa fa-user-circle"></span> chat 3
-            </Typography>
-          </Box>
-        </Popover>
-      </>
+      </div>
     );
   }
 }
