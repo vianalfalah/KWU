@@ -5,9 +5,9 @@ import * as action from "./../../redux/action";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
-import Navbar from "../../component/Navbar";
 import Profile from "../../component/Profile";
-import Message from "../Message/Message";
+import Message from "../../component/Message";
+import Notifications from "../../component/Notifications";
 import Post from "../Post/Post";
 import "./Home.scss";
 import {
@@ -71,11 +71,11 @@ class Home extends Component {
                     direction="column"
                     alignItems="center"
                   >
-                    <div style={{ position: "fixed" }}>
-                      <Card
-                        className="message-container distance"
-                        raised={true}
-                      >
+                    <div
+                      style={{ position: "fixed" }}
+                      className="notif-container distance"
+                    >
+                      <Card raised={true}>
                         <Accordion>
                           <AccordionSummary
                             aria-controls="panel1a-content"
@@ -87,9 +87,9 @@ class Home extends Component {
                               </Typography>
                             </Grid>
                           </AccordionSummary>
-                          <AccordionDetails style={{ maxHeight: 200 }}>
+                          <AccordionDetails className="scroll">
                             <Typography>
-                              <Message />
+                              <Notifications />
                             </Typography>
                           </AccordionDetails>
                         </Accordion>
@@ -105,11 +105,11 @@ class Home extends Component {
                     justify="flex-end"
                     alignItems="center"
                   >
-                    <div style={{ position: "fixed" }}>
-                      <Card
-                        className="message-container distance3"
-                        raised={true}
-                      >
+                    <div
+                      style={{ position: "fixed" }}
+                      className="message-container distance3"
+                    >
+                      <Card raised={true}>
                         <Accordion>
                           <AccordionSummary
                             aria-controls="panel1a-content"
@@ -121,9 +121,7 @@ class Home extends Component {
                               </Typography>
                             </Grid>
                           </AccordionSummary>
-                          <AccordionDetails
-                            style={{ overflowY: "scroll", maxHeight: "40vh" }}
-                          >
+                          <AccordionDetails className="scroll">
                             <Typography>
                               <Message />
                             </Typography>

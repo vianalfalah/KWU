@@ -15,7 +15,6 @@ import {
 } from "@material-ui/core";
 import React, { Component } from "react";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import "./Message.scss";
 
 // const openMessage = Boolean(message);
 // const id = openMessage ? "simple-popover" : undefined;
@@ -31,9 +30,6 @@ export default class Message extends Component {
     let { notif } = this.state;
 
     this.setState({ notif: !notif && e.currentTarget });
-
-    console.log(notif);
-    console.log(notif);
   };
 
   handleMessageClose = () => {

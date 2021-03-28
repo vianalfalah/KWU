@@ -16,10 +16,34 @@ export const login = (body) => (dispatch) => {
       });
       localStorage.setItem("token", response.data.data.user.token);
       localStorage.setItem("user", JSON.stringify(response.data.data));
-      window.location.replace("/");
     } else {
       dispatch({
         type: "FAILED_LOGIN",
+        payload: "error connection",
+      });
+    }
+  });
+};
+
+export const register = (body) => (dispatch) => {
+  let url = URL + "/register";
+  const request = apiPost2(url, body);
+
+  dispatch({
+    type: "REGIS_START",
+  });
+
+  request.then((response) => {
+    if (response && response.data.status === "Register Success") {
+      dispatch({
+        type: "REGIS_SUCCESS",
+        payload: response.data.data,
+      });
+      localStorage.setItem("token", response.data.data.user.token);
+      localStorage.setItem("user", JSON.stringify(response.data.data));
+    } else {
+      dispatch({
+        type: "FAILED_REGIS",
         payload: "error connection",
       });
     }

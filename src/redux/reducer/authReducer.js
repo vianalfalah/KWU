@@ -33,6 +33,29 @@ export default function (state = initialState, action) {
         loading: true,
         successLogin: true,
       };
+    case "REGIS_SUCCESS":
+      return {
+        ...state,
+        isLogin: true,
+        user: action.payload,
+        loading: false,
+        successLogin: true,
+      };
+    case "FAILED_REGIS":
+      return updateObject(state, {
+        message: action.payload,
+        loading: false,
+        successLogin: false,
+        isLogin: false,
+      });
+    case "REGIS_START":
+      return {
+        ...state,
+        isLogin: true,
+
+        loading: true,
+        successLogin: true,
+      };
 
     default:
       return state;

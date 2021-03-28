@@ -20,11 +20,11 @@ import {
 import React from "react";
 import { useHistory } from "react-router";
 import "./component.scss";
-
+import { logout } from "../redux/action/auth";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import SearchIcon from "@material-ui/icons/Search";
-import Message from "../pages/Message/Message";
+import Message from "./Message";
 import Autocomplete, {
   createFilterOptions,
 } from "@material-ui/lab/Autocomplete";
@@ -34,7 +34,7 @@ const filterOptions = createFilterOptions({
   stringify: (option) => option.title,
 });
 
-export default function Navbar() {
+export default function Navbar(props) {
   const history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState(false);
   const [search, setSearch] = React.useState(false);
@@ -64,11 +64,12 @@ export default function Navbar() {
   };
 
   const onSubmitLogout = () => {
-    // logout();
+    logout();
     history.push("/");
   };
 
   const onSubmitHome = () => [history.push("/home")];
+  const onSubmitProfile = () => [history.push("/profile")];
 
   const open = Boolean(anchorEl);
   const openSearch = Boolean(search);
@@ -265,7 +266,7 @@ export default function Navbar() {
             >
               <Box style={{ backgroundColor: "white" }}>
                 <List component="nav" aria-label="main mailbox folders">
-                  <ListItem button>
+                  <ListItem button onClick={onSubmitProfile}>
                     <ListItemIcon>
                       <span className="fa fa-user-circle"></span>
                     </ListItemIcon>
