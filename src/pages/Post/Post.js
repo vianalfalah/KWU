@@ -104,53 +104,100 @@ export default class Post extends Component {
             title="Lorem ipsum dolor sit amet"
             subheader="September 14, 2016"
           />
-
-          <Swiper
-            spaceBetween={30}
-            slidesPerView="auto"
-            navigation
-            // pagination={{ clickable: true }}
-            scrollbar={{ draggable: true }}
-          >
-            <SwiperSlide>
-              <img src={CardIMG} alt="card" className="card-image" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img
-                src="https://imgsrv2.voi.id/6ZvuxpxT0BydtTJzbeP80WiwzxRZmiO-3kDrC3NqcYs/auto/1200/675/sm/1/bG9jYWw6Ly8vcHVibGlzaGVycy8yODQ3My8yMDIxMDEyMzE0MTktbWFpbi5jcm9wcGVkXzE2MTEzOTk5NzMuanBn.jpg"
-                alt="card"
-                className="card-image"
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img
-                src="https://i.ytimg.com/vi/nSB6sOwCY3A/maxresdefault.jpg"
-                alt="card"
-                className="card-image"
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img
-                src="https://i.ytimg.com/vi/nSB6sOwCY3A/maxresdefault.jpg"
-                alt="card"
-                className="card-image"
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img
-                src="https://i.ytimg.com/vi/nSB6sOwCY3A/maxresdefault.jpg"
-                alt="card"
-                className="card-image"
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img
-                src="https://i.ytimg.com/vi/nSB6sOwCY3A/maxresdefault.jpg"
-                alt="card"
-                className="card-image"
-              />
-            </SwiperSlide>
-          </Swiper>
+          <Hidden xsDown>
+            <Swiper
+              spaceBetween={30}
+              slidesPerView="auto"
+              navigation
+              pagination={{ clickable: true }}
+              scrollbar={{ draggable: true }}
+            >
+              <SwiperSlide>
+                <img src={CardIMG} alt="card" className="card-image" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src="https://imgsrv2.voi.id/6ZvuxpxT0BydtTJzbeP80WiwzxRZmiO-3kDrC3NqcYs/auto/1200/675/sm/1/bG9jYWw6Ly8vcHVibGlzaGVycy8yODQ3My8yMDIxMDEyMzE0MTktbWFpbi5jcm9wcGVkXzE2MTEzOTk5NzMuanBn.jpg"
+                  alt="card"
+                  className="card-image"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src="https://i.ytimg.com/vi/nSB6sOwCY3A/maxresdefault.jpg"
+                  alt="card"
+                  className="card-image"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src="https://i.ytimg.com/vi/nSB6sOwCY3A/maxresdefault.jpg"
+                  alt="card"
+                  className="card-image"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src="https://i.ytimg.com/vi/nSB6sOwCY3A/maxresdefault.jpg"
+                  alt="card"
+                  className="card-image"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src="https://i.ytimg.com/vi/nSB6sOwCY3A/maxresdefault.jpg"
+                  alt="card"
+                  className="card-image"
+                />
+              </SwiperSlide>
+            </Swiper>
+          </Hidden>
+          <Hidden smUp>
+            <Swiper
+              spaceBetween={30}
+              slidesPerView="auto"
+              scrollbar={{ draggable: true }}
+            >
+              <SwiperSlide>
+                <img src={CardIMG} alt="card" className="card-image" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src="https://imgsrv2.voi.id/6ZvuxpxT0BydtTJzbeP80WiwzxRZmiO-3kDrC3NqcYs/auto/1200/675/sm/1/bG9jYWw6Ly8vcHVibGlzaGVycy8yODQ3My8yMDIxMDEyMzE0MTktbWFpbi5jcm9wcGVkXzE2MTEzOTk5NzMuanBn.jpg"
+                  alt="card"
+                  className="card-image"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src="https://i.ytimg.com/vi/nSB6sOwCY3A/maxresdefault.jpg"
+                  alt="card"
+                  className="card-image"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src="https://i.ytimg.com/vi/nSB6sOwCY3A/maxresdefault.jpg"
+                  alt="card"
+                  className="card-image"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src="https://i.ytimg.com/vi/nSB6sOwCY3A/maxresdefault.jpg"
+                  alt="card"
+                  className="card-image"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src="https://i.ytimg.com/vi/nSB6sOwCY3A/maxresdefault.jpg"
+                  alt="card"
+                  className="card-image"
+                />
+              </SwiperSlide>
+            </Swiper>
+          </Hidden>
 
           <CardContent>
             <Typography variant="body2" color="textSecondary" component="p">

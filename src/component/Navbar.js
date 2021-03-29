@@ -60,7 +60,7 @@ export default function Navbar(props) {
     console.log(notif);
   };
   const handleOpenSearch = (event) => {
-    setSearch(search ? false : event.currentTarget);
+    setSearch(!search);
   };
 
   const onSubmitLogout = () => {
@@ -99,8 +99,26 @@ export default function Navbar(props) {
             >
               Sobu
             </Typography>
+            {/* <Hidden smUp>
+              <div className="input-search">
+                <IconButton
+                  type="submit"
+                  aria-label="search"
+                  onClick={handleOpenSearch}
+                >
+                  <SearchIcon />
+                </IconButton>
+                {search == true && (
+                  <InputBase
+                    placeholder="Search"
+                    inputProps={{ "aria-label": "search" }}
+                    style={{ margin: 10 }}
+                  />
+                )}
+              </div>
+            </Hidden> */}
           </Grid>
-          <Grid container direction="row" justify="center" alignItems="center">
+          <Grid>
             <Hidden xsDown>
               <div className="input-search">
                 <IconButton type="submit" aria-label="search">
@@ -129,45 +147,14 @@ export default function Navbar(props) {
                 />
               </div>
             </Hidden>
-            <Hidden only={["sm", "md", "xl", "lg"]}>
-              <div className="input-search">
-                <IconButton
-                  type="submit"
-                  aria-label="search"
-                  onClick={handleOpenSearch}
-                >
-                  <SearchIcon />
-                </IconButton>
-                <Popover
-                  id={id}
-                  open={openSearch}
-                  anchorEl={search}
-                  onClose={handleMenuClose}
-                  anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "center",
-                  }}
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "center",
-                  }}
-                >
-                  <InputBase
-                    placeholder="Search"
-                    inputProps={{ "aria-label": "search" }}
-                    style={{ margin: 10 }}
-                  />
-                </Popover>
-              </div>
-            </Hidden>
           </Grid>
           <Grid
             container
             directions="row"
-            justify="center"
+            justify="flex-end"
             alignContent="center"
           >
-            <Hidden only={["sm", "md", "xl", "lg"]}>
+            <Hidden smUp>
               <IconButton
                 aria-label="show 4 new mails"
                 color="inherit"
@@ -177,22 +164,41 @@ export default function Navbar(props) {
                   <i className="fa fa-envelope"></i>
                 </Badge>
               </IconButton>
+
+              <IconButton
+                aria-label="show 17 new notifications"
+                color="inherit"
+                onClick={handleOpenNotif}
+              >
+                <Badge badgeContent={17} color="secondary">
+                  <i className="fa fa-bell"></i>
+                </Badge>
+              </IconButton>
+
+              <IconButton
+                edge="end"
+                aria-label="account of current user"
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+              >
+                <i className="fa fa-user-circle"></i>
+              </IconButton>
             </Hidden>
-            <IconButton
-              aria-label="show 17 new notifications"
-              color="inherit"
-              onClick={handleOpenNotif}
-            >
-              <Badge badgeContent={17} color="secondary">
-                <i className="fa fa-bell"></i>
-              </Badge>
-            </IconButton>
-            <Popper
+
+            <Popover
               id={id}
               open={openNotif}
               anchorEl={notif}
-              transition
               onClose={handleMenuClose}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "right",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
             >
               <Box
                 p={2}
@@ -208,18 +214,9 @@ export default function Navbar(props) {
                   <span className="fa fa-user-circle"></span> Notif 3
                 </Typography>
               </Box>
-            </Popper>
+            </Popover>
 
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <i className="fa fa-user-circle"></i>
-            </IconButton>
-            {/* <Popover
+            <Popover
               id={id}
               open={open}
               anchorEl={anchorEl}
@@ -254,40 +251,7 @@ export default function Navbar(props) {
                   <ListItemText primary="Log Out" />
                 </ListItem>
               </List>
-            </Popover> */}
-
-            <Popper
-              id={id}
-              open={open}
-              anchorEl={anchorEl}
-              transition
-              placement="bottom-end"
-              style={{ marginTop: 20 }}
-            >
-              <Box style={{ backgroundColor: "white" }}>
-                <List component="nav" aria-label="main mailbox folders">
-                  <ListItem button onClick={onSubmitProfile}>
-                    <ListItemIcon>
-                      <span className="fa fa-user-circle"></span>
-                    </ListItemIcon>
-                    <ListItemText primary="Profile" />
-                  </ListItem>
-                  <ListItem button>
-                    <ListItemIcon>
-                      <span className="fa fa-cogs"></span>
-                    </ListItemIcon>
-                    <ListItemText primary="Account Setting" />
-                  </ListItem>
-                  <hr />
-                  <ListItem button onClick={onSubmitLogout}>
-                    <ListItemIcon>
-                      <span className="fa fa-sign-out"></span>
-                    </ListItemIcon>
-                    <ListItemText primary="Log Out" />
-                  </ListItem>
-                </List>
-              </Box>
-            </Popper>
+            </Popover>
 
             <Popover
               id={id}

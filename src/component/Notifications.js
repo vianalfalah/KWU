@@ -2,6 +2,7 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Avatar,
   Box,
   Card,
   CardContent,
@@ -40,22 +41,76 @@ export default class Notifications extends Component {
       <div>
         <List>
           <ListItem button onClick={(e) => this.handleOpenMessage(e)}>
-            <Typography>Notif 1</Typography>
+            <Box style={{ display: "flex" }}>
+              <Avatar>
+                <img
+                  src="https://imgsrv2.voi.id/6ZvuxpxT0BydtTJzbeP80WiwzxRZmiO-3kDrC3NqcYs/auto/1200/675/sm/1/bG9jYWw6Ly8vcHVibGlzaGVycy8yODQ3My8yMDIxMDEyMzE0MTktbWFpbi5jcm9wcGVkXzE2MTEzOTk5NzMuanBn.jpg"
+                  alt="card"
+                  className="card-image"
+                />
+              </Avatar>
+              <Typography>Test</Typography>
+            </Box>
           </ListItem>
           <ListItem button onClick={(e) => this.handleOpenMessage(e)}>
-            <Typography>Notif 1</Typography>
+            <Box style={{ display: "flex" }}>
+              <Avatar>
+                <img
+                  src="https://imgsrv2.voi.id/6ZvuxpxT0BydtTJzbeP80WiwzxRZmiO-3kDrC3NqcYs/auto/1200/675/sm/1/bG9jYWw6Ly8vcHVibGlzaGVycy8yODQ3My8yMDIxMDEyMzE0MTktbWFpbi5jcm9wcGVkXzE2MTEzOTk5NzMuanBn.jpg"
+                  alt="card"
+                  className="card-image"
+                />
+              </Avatar>
+              <Typography>Test</Typography>
+            </Box>
           </ListItem>
           <ListItem button onClick={(e) => this.handleOpenMessage(e)}>
-            <Typography>Notif 1</Typography>
+            <Box style={{ display: "flex" }}>
+              <Avatar>
+                <img
+                  src="https://imgsrv2.voi.id/6ZvuxpxT0BydtTJzbeP80WiwzxRZmiO-3kDrC3NqcYs/auto/1200/675/sm/1/bG9jYWw6Ly8vcHVibGlzaGVycy8yODQ3My8yMDIxMDEyMzE0MTktbWFpbi5jcm9wcGVkXzE2MTEzOTk5NzMuanBn.jpg"
+                  alt="card"
+                  className="card-image"
+                />
+              </Avatar>
+              <Typography>Test</Typography>
+            </Box>
           </ListItem>
           <ListItem button onClick={(e) => this.handleOpenMessage(e)}>
-            <Typography>Notif 1</Typography>
+            <Box style={{ display: "flex" }}>
+              <Avatar>
+                <img
+                  src="https://imgsrv2.voi.id/6ZvuxpxT0BydtTJzbeP80WiwzxRZmiO-3kDrC3NqcYs/auto/1200/675/sm/1/bG9jYWw6Ly8vcHVibGlzaGVycy8yODQ3My8yMDIxMDEyMzE0MTktbWFpbi5jcm9wcGVkXzE2MTEzOTk5NzMuanBn.jpg"
+                  alt="card"
+                  className="card-image"
+                />
+              </Avatar>
+              <Typography>Test</Typography>
+            </Box>
           </ListItem>
           <ListItem button onClick={(e) => this.handleOpenMessage(e)}>
-            <Typography>Notif 1</Typography>
+            <Box style={{ display: "flex" }}>
+              <Avatar>
+                <img
+                  src="https://imgsrv2.voi.id/6ZvuxpxT0BydtTJzbeP80WiwzxRZmiO-3kDrC3NqcYs/auto/1200/675/sm/1/bG9jYWw6Ly8vcHVibGlzaGVycy8yODQ3My8yMDIxMDEyMzE0MTktbWFpbi5jcm9wcGVkXzE2MTEzOTk5NzMuanBn.jpg"
+                  alt="card"
+                  className="card-image"
+                />
+              </Avatar>
+              <Typography>Test</Typography>
+            </Box>
           </ListItem>
           <ListItem button onClick={(e) => this.handleOpenMessage(e)}>
-            <Typography>Notif 1</Typography>
+            <Box style={{ display: "flex" }}>
+              <Avatar>
+                <img
+                  src="https://imgsrv2.voi.id/6ZvuxpxT0BydtTJzbeP80WiwzxRZmiO-3kDrC3NqcYs/auto/1200/675/sm/1/bG9jYWw6Ly8vcHVibGlzaGVycy8yODQ3My8yMDIxMDEyMzE0MTktbWFpbi5jcm9wcGVkXzE2MTEzOTk5NzMuanBn.jpg"
+                  alt="card"
+                  className="card-image"
+                />
+              </Avatar>
+              <Typography>Test</Typography>
+            </Box>
           </ListItem>
         </List>
       </div>

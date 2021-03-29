@@ -25,4 +25,48 @@
       display: none;
     }
   }
+  .flex1 {
+    width: 25%;
+  }
+  .flex2 {
+    width: 40%;
+  }
+  .flex3 {
+    width: 35%;
+  }
+  .flex4 {
+    width: 50%;
+    display: flex;
+    justify-content: flex-start;
+  }
+  .flex5 {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .home-container {
+    .hidden {
+      display: none;
+    }
+    .flex2 {
+      width: 50%;
+    }
+    .flex3 {
+      width: 50%;
+    }
+    .message-container {
+      width: 250px;
+      display: block;
+    }
+    .notif-container {
+      width: 250px;
+      display: block;
+    }
+    .flex2 {
+      width: 100%;
+    }
+  }
 }

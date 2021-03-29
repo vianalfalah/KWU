@@ -14,6 +14,7 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import "./component.scss";
+import { logout } from "../redux/action/auth";
 import user_icon from "../utils/images/user.png";
 import user_setting_icon from "../utils/images/setting-user.png";
 import log_out_icon from "../utils/images/log-out.png";
@@ -31,7 +32,7 @@ export default function Profile() {
     setMessage(message ? false : event.currentTarget);
   };
   const onSubmitLogout = () => {
-    // logout();
+    logout();
     history.push("/");
   };
 

@@ -28,20 +28,19 @@ class Home extends Component {
         {/* <Navbar /> */}
         <Card className="home-container">
           <Grid container>
-            <Grid item container>
-              <Hidden xsDown smDown mdDown>
-                <Grid item sm={3}>
-                  <Card
-                    style={{
-                      position: "fixed",
-                    }}
-                    className="distance2"
-                  >
-                    <Profile />
-                  </Card>
-                </Grid>
-              </Hidden>
-              <Grid item sm={5} style={{ marginBottom: 30 }}>
+            <Grid item sm={12} container>
+              <Grid item className="hidden flex1">
+                <Card
+                  style={{
+                    position: "fixed",
+                  }}
+                  className="distance2"
+                >
+                  <Profile />
+                </Card>
+              </Grid>
+
+              <Grid item style={{ marginBottom: 30 }} className="flex2">
                 <Post />
                 <Post />
                 <Post />
@@ -53,85 +52,82 @@ class Home extends Component {
                 <Post />
                 <Post />
               </Grid>
-              <Hidden xsDown smDown>
+
+              <Grid
+                className="hidden flex3"
+                item
+                container
+                direction="column"
+                justify="center"
+                alignItems="center"
+                style={{ maxHeight: "90vh" }}
+              >
                 <Grid
                   item
-                  sm={4}
+                  sm={6}
+                  container
+                  justify="flex-start"
+                  direction="column"
+                  alignItems="center"
+                >
+                  <div
+                    style={{ position: "fixed" }}
+                    className="notif-container distance"
+                  >
+                    <Card raised={true}>
+                      <Accordion>
+                        <AccordionSummary
+                          aria-controls="panel1a-content"
+                          id="panel1a-header"
+                        >
+                          <Grid container justify="center">
+                            <Typography align="center">Your Notif's</Typography>
+                          </Grid>
+                        </AccordionSummary>
+                        <AccordionDetails className="scroll">
+                          <Typography>
+                            <Notifications />
+                          </Typography>
+                        </AccordionDetails>
+                      </Accordion>
+                    </Card>
+                  </div>
+                </Grid>
+
+                <Grid
+                  item
+                  sm={6}
                   container
                   direction="column"
-                  justify="center"
+                  justify="flex-end"
                   alignItems="center"
-                  style={{ maxHeight: "90vh" }}
                 >
-                  <Grid
-                    item
-                    sm={6}
-                    container
-                    justify="flex-start"
-                    direction="column"
-                    alignItems="center"
+                  <div
+                    style={{ position: "fixed" }}
+                    className="message-container"
                   >
-                    <div
-                      style={{ position: "fixed" }}
-                      className="notif-container distance"
-                    >
-                      <Card raised={true}>
-                        <Accordion>
-                          <AccordionSummary
-                            aria-controls="panel1a-content"
-                            id="panel1a-header"
-                          >
-                            <Grid container justify="center">
-                              <Typography align="center">
-                                Your Notif's
-                              </Typography>
-                            </Grid>
-                          </AccordionSummary>
-                          <AccordionDetails className="scroll">
-                            <Typography>
-                              <Notifications />
+                    <Card raised={true}>
+                      <Accordion>
+                        <AccordionSummary
+                          aria-controls="panel1a-content"
+                          id="panel1a-header"
+                        >
+                          <Grid container justify="center">
+                            <Typography align="center">
+                              Your Messaage's
                             </Typography>
-                          </AccordionDetails>
-                        </Accordion>
-                      </Card>
-                    </div>
-                  </Grid>
-
-                  <Grid
-                    item
-                    sm={6}
-                    container
-                    direction="column"
-                    justify="flex-end"
-                    alignItems="center"
-                  >
-                    <div
-                      style={{ position: "fixed" }}
-                      className="message-container distance3"
-                    >
-                      <Card raised={true}>
-                        <Accordion>
-                          <AccordionSummary
-                            aria-controls="panel1a-content"
-                            id="panel1a-header"
-                          >
-                            <Grid container justify="center">
-                              <Typography align="center">
-                                Your Messaage's
-                              </Typography>
-                            </Grid>
-                          </AccordionSummary>
-                          <AccordionDetails className="scroll">
-                            <Typography>
-                              <Message />
-                            </Typography>
-                          </AccordionDetails>
-                        </Accordion>
-                      </Card>
-                    </div>
-                  </Grid>
+                          </Grid>
+                        </AccordionSummary>
+                        <AccordionDetails className="scroll">
+                          <Typography>
+                            <Message />
+                          </Typography>
+                        </AccordionDetails>
+                      </Accordion>
+                    </Card>
+                  </div>
                 </Grid>
-              </Hidden>
+              </Grid>
             </Grid>
           </Grid>
         </Card>

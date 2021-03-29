@@ -11,6 +11,7 @@ const initialState = {
 export default function (state = initialState, action) {
   switch (action.type) {
     case "LOGIN_SUCCESS":
+      window.location.reload();
       return {
         ...state,
         isLogin: true,
