@@ -30,6 +30,16 @@ import {
 } from "@material-ui/icons";
 import "./Post.scss";
 import CardIMG from "../../utils/images/background-landing.jpg";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, {
+  Navigation,
+  Pagination,
+  Scrollbar,
+  Thumbs,
+  A11y,
+} from "swiper";
+
+SwiperCore.use([Navigation, Pagination, Scrollbar, Thumbs, A11y]);
 
 export default class Post extends Component {
   constructor(props) {
@@ -94,9 +104,54 @@ export default class Post extends Component {
             title="Lorem ipsum dolor sit amet"
             subheader="September 14, 2016"
           />
-          <CardMedia>
-            <img src={CardIMG} alt="card" className="card-image" />
-          </CardMedia>
+
+          <Swiper
+            spaceBetween={30}
+            slidesPerView="auto"
+            navigation
+            // pagination={{ clickable: true }}
+            scrollbar={{ draggable: true }}
+          >
+            <SwiperSlide>
+              <img src={CardIMG} alt="card" className="card-image" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img
+                src="https://imgsrv2.voi.id/6ZvuxpxT0BydtTJzbeP80WiwzxRZmiO-3kDrC3NqcYs/auto/1200/675/sm/1/bG9jYWw6Ly8vcHVibGlzaGVycy8yODQ3My8yMDIxMDEyMzE0MTktbWFpbi5jcm9wcGVkXzE2MTEzOTk5NzMuanBn.jpg"
+                alt="card"
+                className="card-image"
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img
+                src="https://i.ytimg.com/vi/nSB6sOwCY3A/maxresdefault.jpg"
+                alt="card"
+                className="card-image"
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img
+                src="https://i.ytimg.com/vi/nSB6sOwCY3A/maxresdefault.jpg"
+                alt="card"
+                className="card-image"
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img
+                src="https://i.ytimg.com/vi/nSB6sOwCY3A/maxresdefault.jpg"
+                alt="card"
+                className="card-image"
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img
+                src="https://i.ytimg.com/vi/nSB6sOwCY3A/maxresdefault.jpg"
+                alt="card"
+                className="card-image"
+              />
+            </SwiperSlide>
+          </Swiper>
+
           <CardContent>
             <Typography variant="body2" color="textSecondary" component="p">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do

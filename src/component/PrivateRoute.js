@@ -1,7 +1,10 @@
 import { Route, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
 
-const PrivateRoute = ({ component: Component, auth: { isLogin }, ...rest }) => {
+import { useSelector } from "react-redux";
+function PrivateRoute(props) {
+  const { component: Component, ...rest } = props;
+
+  const { isLogin } = useSelector((state) => state.auth);
   return (
     <Route
       {...rest}
@@ -10,10 +13,6 @@ const PrivateRoute = ({ component: Component, auth: { isLogin }, ...rest }) => {
       }
     />
   );
-};
+}
 
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-});
-
-export default connect(mapStateToProps, {})(PrivateRoute);
+export default PrivateRoute;
