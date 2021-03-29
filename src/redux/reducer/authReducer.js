@@ -35,6 +35,7 @@ export default function (state = initialState, action) {
         successLogin: true,
       };
     case "REGIS_SUCCESS":
+      window.location.reload();
       return {
         ...state,
         isLogin: true,
