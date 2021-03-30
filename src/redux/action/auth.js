@@ -50,7 +50,10 @@ export const register = (body) => (dispatch) => {
   });
 };
 
-export const logout = () => {
+export const logout = () => (dispatch) => {
+  dispatch({
+    type: "LOGOUT",
+  });
   localStorage.removeItem("token");
   localStorage.removeItem("user");
 };

@@ -28,6 +28,8 @@ import Message from "./Message";
 import Autocomplete, {
   createFilterOptions,
 } from "@material-ui/lab/Autocomplete";
+import Notifications from "./Notifications";
+import { useDispatch } from "react-redux";
 
 const filterOptions = createFilterOptions({
   matchFrom: "start",
@@ -35,6 +37,7 @@ const filterOptions = createFilterOptions({
 });
 
 export default function Navbar(props) {
+  const exit = useDispatch();
   const history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState(false);
   const [search, setSearch] = React.useState(false);
@@ -64,8 +67,7 @@ export default function Navbar(props) {
   };
 
   const onSubmitLogout = () => {
-    logout();
-    history.push("/");
+    exit(logout());
   };
 
   const onSubmitHome = () => [history.push("/home")];
@@ -89,37 +91,52 @@ export default function Navbar(props) {
         position="fixed"
       >
         <Toolbar>
-          <Grid container direction="row" justify="center" alignItems="center">
-            <Typography
-              variant="h5"
-              gutterBottom
-              button
-              style={{ cursor: "pointer" }}
-              onClick={onSubmitHome}
-            >
-              Sobu
-            </Typography>
-            {/* <Hidden smUp>
-              <div className="input-search">
-                <IconButton
-                  type="submit"
-                  aria-label="search"
-                  onClick={handleOpenSearch}
+          <Grid item xs={7} container direction="row">
+            {search ? null : (
+              <Grid
+                item
+                xs={6}
+                container
+                justify="center"
+                alignItems="flex-start"
+              >
+                <Typography
+                  variant="h5"
+                  gutterBottom
+                  style={{ cursor: "pointer" }}
+                  onClick={onSubmitHome}
                 >
-                  <SearchIcon />
-                </IconButton>
-                {search == true && (
-                  <InputBase
-                    placeholder="Search"
-                    inputProps={{ "aria-label": "search" }}
-                    style={{ margin: 10 }}
-                  />
-                )}
-              </div>
-            </Hidden> */}
+                  Sobu
+                </Typography>
+              </Grid>
+            )}
+
+            <Hidden smUp>
+              <Grid item xs={6} container justify="flex-start">
+                <div className="input-search">
+                  <IconButton
+                    type="submit"
+                    aria-label="search"
+                    onClick={handleOpenSearch}
+                  >
+                    <SearchIcon />
+                  </IconButton>
+                  {search == true && (
+                    <InputBase
+                      placeholder="Search"
+                      inputProps={{ "aria-label": "search" }}
+                      style={{
+                        margin: 10,
+                        width: 120,
+                      }}
+                    />
+                  )}
+                </div>
+              </Grid>
+            </Hidden>
           </Grid>
-          <Grid>
-            <Hidden xsDown>
+          <Hidden xsDown>
+            <Grid>
               <div className="input-search">
                 <IconButton type="submit" aria-label="search">
                   <SearchIcon />
@@ -146,15 +163,17 @@ export default function Navbar(props) {
                   )}
                 />
               </div>
-            </Hidden>
-          </Grid>
+            </Grid>
+          </Hidden>
           <Grid
             container
             directions="row"
             justify="flex-end"
             alignContent="center"
+            item
+            xs={5}
           >
-            <Hidden smUp>
+            <Hidden smUp mdUp>
               <IconButton
                 aria-label="show 4 new mails"
                 color="inherit"
@@ -199,20 +218,10 @@ export default function Navbar(props) {
                 vertical: "top",
                 horizontal: "right",
               }}
+              style={{ maxHeight: "50vh" }}
             >
-              <Box
-                p={2}
-                style={{ width: 400, backgroundColor: "white", marginTop: 10 }}
-              >
-                <Typography style={{ cursor: "pointer", marginBottom: 10 }}>
-                  <span className="fa fa-user-circle"></span> Notif 1
-                </Typography>
-                <Typography style={{ cursor: "pointer", marginBottom: 10 }}>
-                  <span className="fa fa-user-circle"></span> Notif 2
-                </Typography>
-                <Typography style={{ cursor: "pointer", marginTop: 10 }}>
-                  <span className="fa fa-user-circle"></span> Notif 3
-                </Typography>
+              <Box p={2}>
+                <Notifications />
               </Box>
             </Popover>
 
@@ -244,7 +253,7 @@ export default function Navbar(props) {
                   <ListItemText primary="Account Setting" />
                 </ListItem>
                 <hr />
-                <ListItem button onClick={onSubmitLogout}>
+                <ListItem button onClick={() => onSubmitLogout()}>
                   <ListItemIcon>
                     <span className="fa fa-sign-out"></span>
                   </ListItemIcon>
@@ -266,6 +275,7 @@ export default function Navbar(props) {
                 vertical: "top",
                 horizontal: "right",
               }}
+              style={{ maxHeight: "50vh" }}
             >
               <Box p={2}>
                 <Message />

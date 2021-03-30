@@ -19,8 +19,10 @@ import user_icon from "../utils/images/user.png";
 import user_setting_icon from "../utils/images/setting-user.png";
 import log_out_icon from "../utils/images/log-out.png";
 import { useHistory } from "react-router";
+import { useDispatch } from "react-redux";
 
 export default function Profile() {
+  const dispatch = useDispatch();
   const history = useHistory();
   const [message, setMessage] = React.useState(false);
 
@@ -32,8 +34,7 @@ export default function Profile() {
     setMessage(message ? false : event.currentTarget);
   };
   const onSubmitLogout = () => {
-    logout();
-    history.push("/");
+    dispatch(logout());
   };
 
   const onSubmitProfile = () => {

@@ -6,18 +6,19 @@ const initialState = {
   loading: false,
   successLogin: false,
   isLogin: false,
+  token: "",
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
     case "LOGIN_SUCCESS":
-      window.location.reload();
       return {
         ...state,
         isLogin: true,
         user: action.payload,
         loading: false,
         successLogin: true,
+        token: action.payload.user.token,
       };
     case "FAILED_LOGIN":
       return updateObject(state, {
@@ -29,19 +30,16 @@ export default function (state = initialState, action) {
     case "LOGIN_START":
       return {
         ...state,
-        isLogin: true,
-
         loading: true,
-        successLogin: true,
       };
     case "REGIS_SUCCESS":
-      window.location.reload();
       return {
         ...state,
         isLogin: true,
         user: action.payload,
         loading: false,
         successLogin: true,
+        token: action.payload.user.token,
       };
     case "FAILED_REGIS":
       return updateObject(state, {
@@ -53,10 +51,17 @@ export default function (state = initialState, action) {
     case "REGIS_START":
       return {
         ...state,
-        isLogin: true,
-
         loading: true,
-        successLogin: true,
+      };
+    case "LOGOUT":
+      return {
+        ...state,
+        user: null,
+        message: "",
+        loading: false,
+        successLogin: false,
+        isLogin: false,
+        token: "",
       };
 
     default:

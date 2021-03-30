@@ -2,15 +2,15 @@
   background-image: url("https://i2.wp.com/ideawallpapers.com/wp-content/uploads/2020/04/blue-butterfly-13.jpg?resize=757%2C1485");
   margin-top: 60px;
   .message-container {
-    width: 500px;
+    width: 370px;
     display: block;
   }
   .notif-container {
-    width: 500px;
+    width: 370px;
     display: block;
   }
   .distance {
-    margin: 30px;
+    margin: 10vh 5vw;
   }
   .distance2 {
     margin: 10vh 5vw;
@@ -22,7 +22,12 @@
     overflow-y: scroll;
     max-height: 35vh;
     &::-webkit-scrollbar {
-      display: none;
+      width: 5px;
+      height: 8px;
+      background-color: #aaa; /* or add it to the track */
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #000;
     }
   }
   .flex1 {
@@ -52,10 +57,11 @@
       display: none;
     }
     .flex2 {
-      width: 50%;
+      width: 70%;
+      margin: auto;
     }
     .flex3 {
-      width: 50%;
+      width: 30%;
     }
     .message-container {
       width: 250px;
@@ -64,9 +70,6 @@
     .notif-container {
       width: 250px;
       display: block;
-    }
-    .flex2 {
-      width: 100%;
     }
   }
 }

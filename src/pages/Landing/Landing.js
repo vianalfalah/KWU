@@ -12,7 +12,7 @@ import "./Landing.scss";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import * as action from "./../../redux/action";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 
 const initialValuesLogin = {
   email: "",
@@ -33,7 +33,7 @@ const loginSchema = Yup.object({
     .required("Password is required"),
 });
 const regisSchema = Yup.object({
-  fullname: Yup.string()
+  fullName: Yup.string()
     .min(8, "Your name must be minimal 8 character")
     .required("Please fill in your name"),
   email: Yup.string()
@@ -52,13 +52,7 @@ function Landing(props) {
   const history = useHistory();
   const [formlogin, setLogin] = useState(true);
   const [formregis, setRegis] = useState(false);
-  const [formDataRegis, setDataRegis] = useState({
-    fullName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const { isLogin } = useSelector((state) => state.auth);
 
   const onSwitchRegis = () => {
     setLogin(false);
@@ -70,46 +64,37 @@ function Landing(props) {
     setRegis(false);
     document.querySelector(".container").classList.remove("sign-up-mode");
   };
-  const onChange = (e, formikChange) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    // formikChange({ ...formData });
-    console.log(e);
-  };
 
-  const onChangeRegis = (e) => {
-    setDataRegis({ ...formDataRegis, [e.target.name]: e.target.value });
-  };
-
-  const onSubmitLogin = () => {
+  const onSubmitLogin = (values) => {
     login({
-      email: formData.email,
-      password: formData.password,
+      email: values.email,
+      password: values.password,
     });
   };
 
-  const onSubmitRegis = () => {
+  const onSubmitRegis = (values) => {
     register({
-      fullName: formDataRegis.fullName,
-      email: formDataRegis.email,
-      password: formDataRegis.password,
+      fullName: values.fullName,
+      email: values.email,
+      password: values.password,
     });
   };
-  const isLogin = localStorage.getItem("token");
+
+  console.log(isLogin);
 
   return (
     <>
       {isLogin ? (
-        history.push("/home")
+        <Redirect to="/home" />
       ) : (
         <Card className="container">
           {formlogin === true && (
             <Formik
               initialValues={initialValuesLogin}
               validationSchema={loginSchema}
-              onSubmit={() => onSubmitLogin}
-              // onSubmit={() => history.push("/home")}
+              onSubmit={onSubmitLogin}
             >
-              {({ errors, touched, handleChange }) => (
+              {({ errors, touched, values, handleChange }) => (
                 <div className="forms-container">
                   <div className="signin-signup">
                     <Form action="#" className="sign-in-form">
@@ -119,8 +104,8 @@ function Landing(props) {
                         label="Email"
                         name="email"
                         fullWidth
-                        value={formData.email}
-                        onChange={(e) => onChange(e, handleChange)}
+                        value={values.email}
+                        onChange={handleChange.bind(this)}
                         // value={formik.email}
                         // onChange={formik.handleChange}
                         error={touched.email && Boolean(errors.email)}
@@ -133,19 +118,15 @@ function Landing(props) {
                         type="password"
                         name="password"
                         fullWidth
-                        value={formData.password}
-                        onChange={(e) => onChange(e, handleChange)}
+                        value={values.password}
+                        onChange={handleChange.bind(this)}
                         // value={formik.password}
                         // onChange={formik.handleChange}
                         error={touched.password && Boolean(errors.password)}
                         helperText={touched.password && errors.password}
                       />
 
-                      <button
-                        type="submit"
-                        className="btn"
-                        onClick={onSubmitLogin}
-                      >
+                      <button type="submit" className="btn">
                         Sign In
                       </button>
                       {/* <button type="submit" className="btn">
@@ -179,9 +160,9 @@ function Landing(props) {
             <Formik
               initialValues={initialValuesRegis}
               validationSchema={regisSchema}
-              onSubmit={() => onSubmitRegis()}
+              onSubmit={onSubmitRegis}
             >
-              {({ errors, touched, handleChange, formik }) => (
+              {({ errors, touched, handleChange, values }) => (
                 <div className="forms-container">
                   <div className="signin-signup">
                     <Form action="#" className="sign-up-form">
@@ -191,10 +172,8 @@ function Landing(props) {
                         label="Fullname"
                         name="fullName"
                         fullWidth={true}
-                        // value={formik.values.fullname}
-                        // onChange={formik.handleChange}
-                        value={formDataRegis.fullName}
-                        onChange={(e) => onChangeRegis(e, handleChange)}
+                        value={values.fullName}
+                        onChange={handleChange.bind(this)}
                         error={touched.fullName && Boolean(errors.fullName)}
                         helperText={touched.fullName && errors.fullName}
                       />
@@ -203,10 +182,8 @@ function Landing(props) {
                         label="Email"
                         name="email"
                         fullWidth
-                        // value={formik.values.email}
-                        // onChange={formik.handleChange}
-                        value={formDataRegis.email}
-                        onChange={(e) => onChangeRegis(e, handleChange)}
+                        value={values.email}
+                        onChange={handleChange.bind(this)}
                         error={touched.email && Boolean(errors.email)}
                         helperText={touched.email && errors.email}
                       />
@@ -217,10 +194,8 @@ function Landing(props) {
                         type="password"
                         name="password"
                         fullWidth
-                        // value={formik.values.password}
-                        // onChange={formik.handleChange}
-                        value={formDataRegis.password}
-                        onChange={(e) => onChangeRegis(e, handleChange)}
+                        value={values.password}
+                        onChange={handleChange.bind(this)}
                         error={touched.password && Boolean(errors.password)}
                         helperText={touched.password && errors.password}
                       />
@@ -230,10 +205,8 @@ function Landing(props) {
                         type="password"
                         name="confirmPassword"
                         fullWidth
-                        // value={formik.values.confirmPassword}
-                        // onChange={formik.handleChange}
-                        value={formDataRegis.confirmPassword}
-                        onChange={(e) => onChangeRegis(e, handleChange)}
+                        value={values.confirmPassword}
+                        onChange={handleChange.bind(this)}
                         error={
                           touched.confirmPassword &&
                           Boolean(errors.confirmPassword)
@@ -242,11 +215,7 @@ function Landing(props) {
                           touched.confirmPassword && errors.confirmPassword
                         }
                       />
-                      <button
-                        type="submit"
-                        className="btn"
-                        onClick={onSubmitRegis}
-                      >
+                      <button type="submit" className="btn">
                         Join Now
                       </button>
                       {/* <button type="submit" className="btn">

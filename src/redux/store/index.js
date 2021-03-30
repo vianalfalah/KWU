@@ -13,12 +13,7 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export default function configureStore() {
-  let store = createStore(
-    rootReducer,
-    +window.__REDUX_DEVTOOLS_EXTENSION__ &&
-      window.__REDUX_DEVTOOLS_EXTENSION__(),
-    applyMiddleware(thunk)
-  );
+  let store = createStore(rootReducer, applyMiddleware(thunk));
   // let persistor = persistStore(store);
   return { store };
 }

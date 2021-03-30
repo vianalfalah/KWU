@@ -15,6 +15,7 @@ import {
   AccordionDetails,
   AccordionSummary,
   Card,
+  Divider,
   Drawer,
   Grid,
   Hidden,
@@ -71,8 +72,8 @@ class Home extends Component {
                   alignItems="center"
                 >
                   <div
-                    style={{ position: "fixed" }}
-                    className="notif-container distance"
+                    style={{ position: "fixed", marginTop: 10 }}
+                    className="notif-container"
                   >
                     <Card raised={true}>
                       <Accordion>
@@ -85,9 +86,7 @@ class Home extends Component {
                           </Grid>
                         </AccordionSummary>
                         <AccordionDetails className="scroll">
-                          <Typography>
-                            <Notifications />
-                          </Typography>
+                          <Notifications />
                         </AccordionDetails>
                       </Accordion>
                     </Card>
@@ -98,8 +97,8 @@ class Home extends Component {
                   item
                   sm={6}
                   container
-                  direction="column"
                   justify="flex-end"
+                  direction="column"
                   alignItems="center"
                 >
                   <div
@@ -119,9 +118,7 @@ class Home extends Component {
                           </Grid>
                         </AccordionSummary>
                         <AccordionDetails className="scroll">
-                          <Typography>
-                            <Message />
-                          </Typography>
+                          <Message />
                         </AccordionDetails>
                       </Accordion>
                     </Card>
