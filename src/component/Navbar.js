@@ -30,6 +30,8 @@ import Autocomplete, {
 } from "@material-ui/lab/Autocomplete";
 import Notifications from "./Notifications";
 import { useDispatch } from "react-redux";
+import LOGO_SOBU from "../utils/images/logo.png";
+import LOGO_MINI from "../utils/images/logo_mini.png";
 
 const filterOptions = createFilterOptions({
   matchFrom: "start",
@@ -91,7 +93,13 @@ export default function Navbar(props) {
         position="fixed"
       >
         <Toolbar>
-          <Grid item xs={7} container direction="row">
+          <Grid
+            item
+            xs={7}
+            container
+            direction="row"
+            justify={!search ? "center" : null}
+          >
             {search ? null : (
               <Grid
                 item
@@ -99,20 +107,23 @@ export default function Navbar(props) {
                 container
                 justify="center"
                 alignItems="flex-start"
+                onClick={onSubmitHome}
               >
-                <Typography
-                  variant="h5"
-                  gutterBottom
-                  style={{ cursor: "pointer" }}
-                  onClick={onSubmitHome}
-                >
-                  Sobu
-                </Typography>
+                <img src={LOGO_MINI} alt="logo" className="logo" />
+                <Hidden only={["xs", "sm", "md"]}>
+                  <img src={LOGO_SOBU} alt="logo" className="logo" />
+                </Hidden>
               </Grid>
             )}
 
             <Hidden smUp>
-              <Grid item xs={6} container justify="flex-start">
+              <Grid
+                item
+                xs={6}
+                container
+                justify="flex-start"
+                alignItems="center"
+              >
                 <div className="input-search">
                   <IconButton
                     type="submit"
@@ -136,7 +147,7 @@ export default function Navbar(props) {
             </Hidden>
           </Grid>
           <Hidden xsDown>
-            <Grid>
+            <Grid container justify="center">
               <div className="input-search">
                 <IconButton type="submit" aria-label="search">
                   <SearchIcon />

@@ -9,8 +9,6 @@ import {
   Redirect,
 } from "react-router-dom";
 import Landing from "./pages/Landing/Landing";
-import Home from "./pages/Home/Home";
-import UserP from "./pages/UserProfile/UserP";
 import Navbar from "./component/Navbar";
 import { PrivateRoute } from "./component/PrivateRoute";
 import { dom } from "@fortawesome/fontawesome-svg-core";
@@ -20,12 +18,13 @@ import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import BlockUi from "react-block-ui";
 import "react-block-ui/style.css";
+import routers from "./routes";
 dom.watch();
 // const isLogin = localStorage.getItem("token");
 
 function App() {
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.auth);
+  const { isLogin, loading } = useSelector((state) => state.auth);
   useEffect(() => {
     const user = localStorage.getItem("user");
     if (user != null) {
@@ -38,32 +37,36 @@ function App() {
       <Router>
         <BlockUi blocking={loading} message={"loading...."}>
           <Switch>
-            <Route exact path="/home" component={Layout} />
-            <Route exact path="/" component={Landing} />
+            <Route
+              exact
+              path="/landing"
+              name="Landing Page"
+              render={(props) => <Landing {...props} />}
+            />
+            {routers.map((route, idx) => {
+              return route.component ? (
+                <>
+                  <Navbar />
+                  <Route
+                    key={idx}
+                    path={route.path}
+                    exact={route.exact}
+                    name={route.name}
+                    render={(props) => <route.component {...props} />}
+                  />
+                </>
+              ) : null;
+            })}
+            {isLogin ? (
+              <Redirect from="/" to="/home" />
+            ) : (
+              <Redirect from="/" to="/landing" />
+            )}
           </Switch>
         </BlockUi>
       </Router>
     </div>
   );
 }
-
-const Layout = () => {
-  const { isLogin } = useSelector((state) => state.auth);
-  return (
-    <div>
-      {isLogin ? (
-        <>
-          <Navbar />
-          <Switch>
-            <Route exact path="/home" component={Home} />
-            {/* <Route exact path="/profile" component={UserP} /> */}
-          </Switch>
-        </>
-      ) : (
-        <Redirect to="/" />
-      )}
-    </div>
-  );
-};
 
 export default App;

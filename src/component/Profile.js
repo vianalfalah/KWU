@@ -12,19 +12,25 @@ import {
   Popper,
   Typography,
 } from "@material-ui/core";
-import React from "react";
+import React, { useEffect } from "react";
 import "./component.scss";
 import { logout } from "../redux/action/auth";
 import user_icon from "../utils/images/user.png";
 import user_setting_icon from "../utils/images/setting-user.png";
 import log_out_icon from "../utils/images/log-out.png";
 import { useHistory } from "react-router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getProfile } from "../redux/action";
 
 export default function Profile() {
   const dispatch = useDispatch();
+  const profile = useSelector((state) => state.profile.user);
   const history = useHistory();
   const [message, setMessage] = React.useState(false);
+
+  useEffect(() => {
+    dispatch(getProfile());
+  }, []);
 
   const handleMessageClose = () => {
     setMessage(false);
@@ -35,23 +41,27 @@ export default function Profile() {
   };
   const onSubmitLogout = () => {
     dispatch(logout());
+    history.push("/");
   };
 
   const onSubmitProfile = () => {
     history.push("/profile");
   };
+
+  console.log(profile);
   return (
     <div>
       <Card className="profile-container" raised={true}>
         <CardMedia>
           <img
-            src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
+            src={profile?.profile?.avatar}
             alt="img-profile"
+            style={{ borderRadius: "50%" }}
             width="200"
             height="200"
           />
         </CardMedia>
-        <CardHeader title="My Name"></CardHeader>
+        <CardHeader title={profile.fullName}></CardHeader>
         <CardContent>
           <List component="nav" aria-label="main mailbox folders">
             <ListItem button onClick={onSubmitProfile}>

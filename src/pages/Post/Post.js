@@ -38,10 +38,12 @@ import SwiperCore, {
   Thumbs,
   A11y,
 } from "swiper";
+import * as action from "../../redux/action";
+import { connect } from "react-redux";
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, Thumbs, A11y]);
 
-export default class Post extends Component {
+class CardPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -73,9 +75,10 @@ export default class Post extends Component {
     this.setState({ openShare: !openShare });
   };
 
-  handleExpandClick = () => {
-    let { moreInfo } = this.state;
-    this.setState({ moreInfo: !moreInfo });
+  handleExpandClick = (id) => {
+    this.setState((prevState) => ({
+      moreInfo: !prevState.moreInfo,
+    }));
   };
 
   handleCommetClick = () => {
@@ -84,9 +87,11 @@ export default class Post extends Component {
   };
   render() {
     let { moreInfo, comment, openShare, likeIt, options } = this.state;
+    let { post } = this.props;
+    console.log(moreInfo);
     return (
-      <div>
-        <Card className="post-container" raised={true}>
+      <>
+        <Card key={post.id} className="post-container" raised={true}>
           <CardHeader
             avatar={
               <Avatar aria-label="recipe" style={{ backgroundColor: "red" }}>
@@ -101,8 +106,8 @@ export default class Post extends Component {
                 <MoreVert />
               </IconButton>
             }
-            title="Lorem ipsum dolor sit amet"
-            subheader="September 14, 2016"
+            title={post.title}
+            subheader={post.createdBy.fullName}
           />
           <Hidden xsDown>
             <Swiper
@@ -112,44 +117,11 @@ export default class Post extends Component {
               pagination={{ clickable: true }}
               scrollbar={{ draggable: true }}
             >
-              <SwiperSlide>
-                <img src={CardIMG} alt="card" className="card-image" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  src="https://imgsrv2.voi.id/6ZvuxpxT0BydtTJzbeP80WiwzxRZmiO-3kDrC3NqcYs/auto/1200/675/sm/1/bG9jYWw6Ly8vcHVibGlzaGVycy8yODQ3My8yMDIxMDEyMzE0MTktbWFpbi5jcm9wcGVkXzE2MTEzOTk5NzMuanBn.jpg"
-                  alt="card"
-                  className="card-image"
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  src="https://i.ytimg.com/vi/nSB6sOwCY3A/maxresdefault.jpg"
-                  alt="card"
-                  className="card-image"
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  src="https://i.ytimg.com/vi/nSB6sOwCY3A/maxresdefault.jpg"
-                  alt="card"
-                  className="card-image"
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  src="https://i.ytimg.com/vi/nSB6sOwCY3A/maxresdefault.jpg"
-                  alt="card"
-                  className="card-image"
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  src="https://i.ytimg.com/vi/nSB6sOwCY3A/maxresdefault.jpg"
-                  alt="card"
-                  className="card-image"
-                />
-              </SwiperSlide>
+              {post.photos.map((img) => (
+                <SwiperSlide>
+                  <img src={img.images} alt="card" className="card-image" />
+                </SwiperSlide>
+              ))}
             </Swiper>
           </Hidden>
           <Hidden smUp>
@@ -158,53 +130,17 @@ export default class Post extends Component {
               slidesPerView="auto"
               scrollbar={{ draggable: true }}
             >
-              <SwiperSlide>
-                <img src={CardIMG} alt="card" className="card-image" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  src="https://imgsrv2.voi.id/6ZvuxpxT0BydtTJzbeP80WiwzxRZmiO-3kDrC3NqcYs/auto/1200/675/sm/1/bG9jYWw6Ly8vcHVibGlzaGVycy8yODQ3My8yMDIxMDEyMzE0MTktbWFpbi5jcm9wcGVkXzE2MTEzOTk5NzMuanBn.jpg"
-                  alt="card"
-                  className="card-image"
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  src="https://i.ytimg.com/vi/nSB6sOwCY3A/maxresdefault.jpg"
-                  alt="card"
-                  className="card-image"
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  src="https://i.ytimg.com/vi/nSB6sOwCY3A/maxresdefault.jpg"
-                  alt="card"
-                  className="card-image"
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  src="https://i.ytimg.com/vi/nSB6sOwCY3A/maxresdefault.jpg"
-                  alt="card"
-                  className="card-image"
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  src="https://i.ytimg.com/vi/nSB6sOwCY3A/maxresdefault.jpg"
-                  alt="card"
-                  className="card-image"
-                />
-              </SwiperSlide>
+              {post.photos.map((img) => (
+                <SwiperSlide>
+                  <img src={img.images} alt="card" className="card-image" />
+                </SwiperSlide>
+              ))}
             </Swiper>
           </Hidden>
 
           <CardContent>
             <Typography variant="body2" color="textSecondary" component="p">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              {post.description}
             </Typography>
           </CardContent>
           <CardActions disableSpacing>
@@ -248,36 +184,7 @@ export default class Post extends Component {
           </CardActions>
           <Collapse in={moreInfo} timeout="auto" unmountOnExit>
             <CardContent>
-              <Typography paragraph>Lorem Ipsum</Typography>
-              <Typography paragraph>
-                Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                cupidatat non proident, sunt in culpa qui officia deserunt
-                mollit anim id est laborum.
-              </Typography>
-              <Typography paragraph>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                quae ab illo inventore veritatis et quasi architecto beatae
-                vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia
-                voluptas sit aspernatur aut odit aut fugit, sed quia
-                consequuntur magni dolores eos qui ratione voluptatem sequi
-                nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor
-                sit amet, consectetur, adipisci velit, sed quia non numquam eius
-                modi tempora incidunt ut labore et dolore magnam aliquam quaerat
-                voluptatem.
-              </Typography>
-              <Typography paragraph>
-                Ut enim ad minima veniam, quis nostrum exercitationem ullam
-                corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
-                consequatur? Quis autem vel eum iure reprehenderit qui in ea
-                voluptate velit esse quam nihil molestiae consequatur, vel illum
-                qui dolorem eum fugiat quo voluptas nulla pariatur?"
-              </Typography>
-              <Typography>
-                Set aside off of the heat to let rest for 10 minutes, and then
-                serve.
-              </Typography>
+              <Typography paragraph>{post.description}</Typography>
             </CardContent>
           </Collapse>
           <Collapse in={comment} timeout="auto" unmountOnExit>
@@ -289,22 +196,7 @@ export default class Post extends Component {
                 <Typography align="justify">Name 1</Typography>
               </Grid>
             </Grid>
-            <Grid container justify="start-end" alignContent="center">
-              <Grid item xs={2} sm={2}>
-                <i className="fa fa-user-circle" style={{ fontSize: 20 }}></i>
-              </Grid>
-              <Grid item xs={10} sm={10}>
-                <Typography align="justify">Name 2</Typography>
-              </Grid>
-            </Grid>
-            <Grid container justify="start-end" alignContent="center">
-              <Grid item xs={2} sm={2}>
-                <i className="fa fa-user-circle" style={{ fontSize: 20 }}></i>
-              </Grid>
-              <Grid item xs={10} sm={10}>
-                <Typography align="justify">Name 3</Typography>
-              </Grid>
-            </Grid>
+
             <Grid
               container
               directions="row"
@@ -383,7 +275,37 @@ export default class Post extends Component {
             </DialogContentText>
           </DialogContent>
         </Dialog>
+      </>
+    );
+  }
+}
+
+class Post extends Component {
+  componentDidMount = () => {
+    let { getPosts } = this.props;
+    getPosts();
+  };
+
+  render() {
+    let { post } = this.props;
+    console.log(post);
+    return (
+      <div>
+        {post?.listPost?.posts?.map((item) => (
+          <CardPost key={item.id} post={item} />
+        ))}
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    post: state.post,
+  };
+};
+const mapDispatchToProps = (dispatch) => ({
+  getPosts: (data) => dispatch(action.getPosts(data)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Post);

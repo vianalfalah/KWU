@@ -14,12 +14,9 @@ export const login = (body) => (dispatch) => {
         type: "LOGIN_SUCCESS",
         payload: response.data.data,
       });
-      localStorage.setItem("token", response.data.data.user.token);
-      localStorage.setItem("user", JSON.stringify(response.data.data));
     } else {
       dispatch({
         type: "FAILED_LOGIN",
-        payload: "error connection",
       });
     }
   });
@@ -39,8 +36,6 @@ export const register = (body) => (dispatch) => {
         type: "REGIS_SUCCESS",
         payload: response.data.data,
       });
-      localStorage.setItem("token", response.data.data.user.token);
-      localStorage.setItem("user", JSON.stringify(response.data.data));
     } else {
       dispatch({
         type: "FAILED_REGIS",

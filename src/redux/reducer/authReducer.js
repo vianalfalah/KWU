@@ -2,7 +2,7 @@ import { updateObject } from "./utility";
 
 const initialState = {
   user: null,
-  message: "",
+  messageLogin: "",
   loading: false,
   successLogin: false,
   isLogin: false,
@@ -12,6 +12,8 @@ const initialState = {
 export default function (state = initialState, action) {
   switch (action.type) {
     case "LOGIN_SUCCESS":
+      localStorage.setItem("token", action.payload.user.token);
+      localStorage.setItem("user", JSON.stringify(action.payload));
       return {
         ...state,
         isLogin: true,
@@ -21,12 +23,13 @@ export default function (state = initialState, action) {
         token: action.payload.user.token,
       };
     case "FAILED_LOGIN":
-      return updateObject(state, {
-        message: action.payload,
+      return {
+        ...state,
+        // messageLogin: action.payload,
         loading: false,
         successLogin: false,
         isLogin: false,
-      });
+      };
     case "LOGIN_START":
       return {
         ...state,
@@ -43,7 +46,7 @@ export default function (state = initialState, action) {
       };
     case "FAILED_REGIS":
       return updateObject(state, {
-        message: action.payload,
+        messageLogin: action.payload,
         loading: false,
         successLogin: false,
         isLogin: false,
@@ -57,7 +60,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         user: null,
-        message: "",
+        messageLogin: "",
         loading: false,
         successLogin: false,
         isLogin: false,

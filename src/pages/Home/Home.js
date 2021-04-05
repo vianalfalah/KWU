@@ -8,6 +8,7 @@ import { Redirect } from "react-router-dom";
 import Profile from "../../component/Profile";
 import Message from "../../component/Message";
 import Notifications from "../../component/Notifications";
+import Navbar from "../../component/Navbar";
 import Post from "../Post/Post";
 import "./Home.scss";
 import {
@@ -26,7 +27,7 @@ class Home extends Component {
   render() {
     return (
       <>
-        {/* <Navbar /> */}
+        <Navbar />
         <Card className="home-container">
           <Grid container>
             <Grid item sm={12} container>
@@ -43,15 +44,6 @@ class Home extends Component {
 
               <Grid item style={{ marginBottom: 30 }} className="flex2">
                 <Post />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
               </Grid>
 
               <Grid
@@ -61,7 +53,7 @@ class Home extends Component {
                 direction="column"
                 justify="center"
                 alignItems="center"
-                style={{ maxHeight: "90vh" }}
+                style={{ height: "90vh" }}
               >
                 <Grid
                   item
