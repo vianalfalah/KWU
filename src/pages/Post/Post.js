@@ -76,9 +76,11 @@ class CardPost extends Component {
   };
 
   handleExpandClick = (id) => {
-    this.setState((prevState) => ({
-      moreInfo: !prevState.moreInfo,
-    }));
+    // this.setState((prevState) => ({
+    //   moreInfo: !prevState.moreInfo,
+    // }));
+    let { moreInfo } = this.state;
+    this.setState({ moreInfo: !moreInfo });
   };
 
   handleCommetClick = () => {

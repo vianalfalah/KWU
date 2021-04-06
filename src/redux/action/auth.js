@@ -10,6 +10,8 @@ export const login = (body) => (dispatch) => {
 
   request.then((response) => {
     if (response && response.data.status === "Login Success") {
+      localStorage.setItem("token", response.data.data.user.token);
+      localStorage.setItem("user", JSON.stringify(response.data.data));
       dispatch({
         type: "LOGIN_SUCCESS",
         payload: response.data.data,

@@ -9,11 +9,9 @@ const initialState = {
   token: "",
 };
 
-export default function (state = initialState, action) {
+export default function async(state = initialState, action) {
   switch (action.type) {
     case "LOGIN_SUCCESS":
-      localStorage.setItem("token", action.payload.user.token);
-      localStorage.setItem("user", JSON.stringify(action.payload));
       return {
         ...state,
         isLogin: true,

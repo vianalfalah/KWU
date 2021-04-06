@@ -10,16 +10,16 @@ import {
 } from "react-router-dom";
 import Landing from "./pages/Landing/Landing";
 import Navbar from "./component/Navbar";
-import { PrivateRoute } from "./component/PrivateRoute";
-import { dom } from "@fortawesome/fontawesome-svg-core";
+import PrivateRoute from "./component/PrivateRoute";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import BlockUi from "react-block-ui";
 import "react-block-ui/style.css";
-import routers from "./routes";
-dom.watch();
+import UserP from "./pages/UserProfile/UserP";
+import Home from "./pages/Home/Home";
+
 // const isLogin = localStorage.getItem("token");
 
 function App() {
@@ -37,27 +37,9 @@ function App() {
       <Router>
         <BlockUi blocking={loading} message={"loading...."}>
           <Switch>
-            <Route
-              exact
-              path="/"
-              name="Landing Page"
-              render={(props) => <Landing {...props} />}
-            />
-            {routers.map((route, idx) => {
-              return route.component ? (
-                <>
-                  <Navbar />
-                  <Route
-                    key={idx}
-                    path={route.path}
-                    exact={route.exact}
-                    name={route.name}
-                    render={(props) => <route.component {...props} />}
-                  />
-                </>
-              ) : null;
-            })}
-            {isLogin ? <Redirect from="/" to="/home" /> : <Redirect to="/" />}
+            <Route exact path="/" component={Landing} />
+            <PrivateRoute exact path="/home" component={Home} />
+            <PrivateRoute exact path="/profile" component={UserP} />
           </Switch>
         </BlockUi>
       </Router>
