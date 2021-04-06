@@ -39,7 +39,7 @@ function App() {
           <Switch>
             <Route
               exact
-              path="/landing"
+              path="/"
               name="Landing Page"
               render={(props) => <Landing {...props} />}
             />
@@ -57,11 +57,7 @@ function App() {
                 </>
               ) : null;
             })}
-            {isLogin ? (
-              <Redirect from="/" to="/home" />
-            ) : (
-              <Redirect from="/" to="/landing" />
-            )}
+            {isLogin ? <Redirect from="/" to="/home" /> : <Redirect to="/" />}
           </Switch>
         </BlockUi>
       </Router>
