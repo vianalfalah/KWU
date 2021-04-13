@@ -1,13 +1,23 @@
 .post-container {
-  width: 100%;
+  // width: 80%;
   display: block;
   margin-top: 30px;
 
-  .card-image {
+  .image-post-card {
     width: 100%;
-    max-height: 700px;
+    height: 450px;
+    object-fit: cover;
+    object-position: 50% 50%;
   }
   .box-comment {
     margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .post-container {
+    .image-post-card {
+      height: 300px;
+    }
   }
 }

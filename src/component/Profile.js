@@ -12,7 +12,7 @@ import {
   Popper,
   Typography,
 } from "@material-ui/core";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./component.scss";
 import { logout } from "../redux/action/auth";
 import user_icon from "../utils/images/user.png";
@@ -26,7 +26,7 @@ export default function Profile() {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.profile.user);
   const history = useHistory();
-  const [message, setMessage] = React.useState(false);
+  const [message, setMessage] = useState(false);
 
   useEffect(() => {
     dispatch(getProfile());
@@ -41,11 +41,11 @@ export default function Profile() {
   };
   const onSubmitLogout = () => {
     dispatch(logout());
-    history.push("/");
+    window.location.replace("/");
   };
 
   const onSubmitProfile = () => {
-    history.push("/profile");
+    window.location.replace("/profile");
   };
 
   console.log(profile);
@@ -53,15 +53,24 @@ export default function Profile() {
     <div>
       <Card className="profile-container" raised={true}>
         <CardMedia>
-          <img
-            src={profile?.profile?.avatar}
-            alt="img-profile"
-            style={{ borderRadius: "50%" }}
-            width="200"
-            height="200"
-          />
+          <div className="profile-image">
+            <img
+              src="https://awsimages.detik.net.id/community/media/visual/2021/03/07/genshin-impact-14_43.jpeg?w=700&q=90"
+              alt=""
+              className="img-sampul"
+            />
+            <img
+              src={
+                profile?.profile?.avatar === "default"
+                  ? "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png"
+                  : profile?.profile?.avatar
+              }
+              alt=""
+              className="img-profile"
+            />
+          </div>
         </CardMedia>
-        <CardHeader title={profile.fullName}></CardHeader>
+        <CardHeader title={profile?.fullName}></CardHeader>
         <CardContent>
           <List component="nav" aria-label="main mailbox folders">
             <ListItem button onClick={onSubmitProfile}>

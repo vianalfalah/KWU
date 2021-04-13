@@ -14,7 +14,7 @@
     margin: 10vh 5vw;
   }
   .distance2 {
-    margin: 10vh 5vw;
+    margin: 10vh 2vw;
   }
   .distance3 {
     margin: 0 30px;
@@ -71,6 +71,14 @@
     .notif-container {
       width: 250px;
       display: block;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .home-container {
+    .flex2 {
+      width: 90%;
     }
   }
 }

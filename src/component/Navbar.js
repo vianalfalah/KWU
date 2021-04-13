@@ -70,10 +70,15 @@ export default function Navbar(props) {
 
   const onSubmitLogout = () => {
     exit(logout());
+    window.location.replace("/");
   };
 
-  const onSubmitHome = () => [history.push("/home")];
-  const onSubmitProfile = () => [history.push("/profile")];
+  const onSubmitHome = () => {
+    window.location.replace("/home");
+  };
+  const onSubmitProfile = () => {
+    window.location.replace("/profile");
+  };
 
   const open = Boolean(anchorEl);
   const openSearch = Boolean(search);
@@ -110,7 +115,7 @@ export default function Navbar(props) {
                 onClick={onSubmitHome}
               >
                 <img src={LOGO_MINI} alt="logo" className="logo" />
-                <Hidden only={["xs", "sm", "md"]}>
+                <Hidden only={["xs", "sm", "md", "lg"]}>
                   <img src={LOGO_SOBU} alt="logo" className="logo" />
                 </Hidden>
               </Grid>
@@ -174,6 +179,24 @@ export default function Navbar(props) {
                   )}
                 />
               </div>
+            </Grid>
+            <Grid
+              container
+              directions="row"
+              justify="flex-end"
+              alignContent="center"
+              item
+              xs={5}
+            >
+              <IconButton
+                aria-label="show 4 new mails"
+                color="inherit"
+                onClick={handleOpenMessage}
+              >
+                <Badge badgeContent={4} color="secondary">
+                  <i className="fa fa-bookmark"></i>
+                </Badge>
+              </IconButton>
             </Grid>
           </Hidden>
           <Grid
@@ -251,7 +274,7 @@ export default function Navbar(props) {
               }}
             >
               <List component="nav" aria-label="main mailbox folders">
-                <ListItem button>
+                <ListItem button onClick={() => onSubmitProfile()}>
                   <ListItemIcon>
                     <span className="fa fa-user-circle"></span>
                   </ListItemIcon>
@@ -262,6 +285,12 @@ export default function Navbar(props) {
                     <span className="fa fa-cogs"></span>
                   </ListItemIcon>
                   <ListItemText primary="Account Setting" />
+                </ListItem>
+                <ListItem button>
+                  <ListItemIcon>
+                    <span className="fa fa-bookmark"></span>
+                  </ListItemIcon>
+                  <ListItemText primary="Favorite" />
                 </ListItem>
                 <hr />
                 <ListItem button onClick={() => onSubmitLogout()}>

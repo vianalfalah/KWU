@@ -9,6 +9,7 @@ import configureStore from "./redux/store";
 import "swiper/swiper.scss";
 import "swiper/components/navigation/navigation.scss";
 import "swiper/components/pagination/pagination.scss";
+
 const { store } = configureStore();
 ReactDOM.render(
   <Provider store={store}>

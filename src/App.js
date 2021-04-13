@@ -24,7 +24,8 @@ import Home from "./pages/Home/Home";
 
 function App() {
   const dispatch = useDispatch();
-  const { isLogin, loading } = useSelector((state) => state.auth);
+  const isLogin = localStorage.getItem("token");
+  const { loading } = useSelector((state) => state.auth);
   useEffect(() => {
     const user = localStorage.getItem("user");
     if (user != null) {
@@ -38,6 +39,7 @@ function App() {
         <BlockUi blocking={loading} message={"loading...."}>
           <Switch>
             <Route exact path="/" component={Landing} />
+            {!isLogin && <Redirect to="/" />}
             <PrivateRoute exact path="/home" component={Home} />
             <PrivateRoute exact path="/profile" component={UserP} />
           </Switch>

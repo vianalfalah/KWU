@@ -13,6 +13,8 @@ import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import * as action from "./../../redux/action";
 import { connect, useSelector } from "react-redux";
+import LOGIN from "../../utils/images/login.svg";
+import REGIS from "../../utils/images/regis.svg";
 
 const initialValuesLogin = {
   email: "",
@@ -84,58 +86,55 @@ function Landing(props) {
 
   return (
     <>
-      {isLogin ? (
-        <Redirect to="/home" />
-      ) : (
-        <Card className="container">
-          {formlogin === true && (
-            <Formik
-              initialValues={initialValuesLogin}
-              validationSchema={loginSchema}
-              onSubmit={onSubmitLogin}
-            >
-              {({ errors, touched, values, handleChange }) => (
-                <div className="forms-container">
-                  <div className="signin-signup">
-                    <Form action="#" className="sign-in-form">
-                      <h2 className="title">Log in</h2>
-                      <TextField
-                        id="standard-basic"
-                        label="Email"
-                        name="email"
-                        fullWidth
-                        value={values.email}
-                        onChange={handleChange.bind(this)}
-                        // value={formik.email}
-                        // onChange={formik.handleChange}
-                        error={touched.email && Boolean(errors.email)}
-                        helperText={touched.email && errors.email}
-                      />
+      <Card className="container">
+        {formlogin === true && (
+          <Formik
+            initialValues={initialValuesLogin}
+            validationSchema={loginSchema}
+            onSubmit={onSubmitLogin}
+          >
+            {({ errors, touched, values, handleChange }) => (
+              <div className="forms-container">
+                <div className="signin-signup">
+                  <Form action="#" className="sign-in-form">
+                    <h2 className="title">Log in</h2>
+                    <TextField
+                      id="standard-basic"
+                      label="Email"
+                      name="email"
+                      fullWidth
+                      value={values.email}
+                      onChange={handleChange.bind(this)}
+                      // value={formik.email}
+                      // onChange={formik.handleChange}
+                      error={touched.email && Boolean(errors.email)}
+                      helperText={touched.email && errors.email}
+                    />
 
-                      <TextField
-                        id="standard-basic"
-                        label="Password"
-                        type="password"
-                        name="password"
-                        fullWidth
-                        value={values.password}
-                        onChange={handleChange.bind(this)}
-                        // value={formik.password}
-                        // onChange={formik.handleChange}
-                        error={touched.password && Boolean(errors.password)}
-                        helperText={touched.password && errors.password}
-                      />
+                    <TextField
+                      id="standard-basic"
+                      label="Password"
+                      type="password"
+                      name="password"
+                      fullWidth
+                      value={values.password}
+                      onChange={handleChange.bind(this)}
+                      // value={formik.password}
+                      // onChange={formik.handleChange}
+                      error={touched.password && Boolean(errors.password)}
+                      helperText={touched.password && errors.password}
+                    />
 
-                      <button type="submit" className="btn">
-                        Sign In
-                      </button>
-                      {/* <button type="submit" className="btn">
+                    <button type="submit" className="btn">
+                      Sign In
+                    </button>
+                    {/* <button type="submit" className="btn">
                     Submit
                   </button> */}
-                      <p className="social-text">
-                        Or Sign in with social platforms
-                      </p>
-                      {/* <div className="social-media">
+                    <p className="social-text">
+                      Or Sign in with social platforms
+                    </p>
+                    {/* <div className="social-media">
                     <a href="#" className="social-icon">
                       <i className="fab fa-facebook-f"></i>
                     </a>
@@ -149,82 +148,82 @@ function Landing(props) {
                       <i className="fab fa-linkedin-in"></i>
                     </a>
                   </div> */}
-                    </Form>
-                  </div>
+                  </Form>
                 </div>
-              )}
-            </Formik>
-          )}
+              </div>
+            )}
+          </Formik>
+        )}
 
-          {formregis === true && (
-            <Formik
-              initialValues={initialValuesRegis}
-              validationSchema={regisSchema}
-              onSubmit={onSubmitRegis}
-            >
-              {({ errors, touched, handleChange, values }) => (
-                <div className="forms-container">
-                  <div className="signin-signup">
-                    <Form action="#" className="sign-up-form">
-                      <h2 className="title">Join Here</h2>
-                      <TextField
-                        id="standard-basic"
-                        label="Fullname"
-                        name="fullName"
-                        fullWidth={true}
-                        value={values.fullName}
-                        onChange={handleChange.bind(this)}
-                        error={touched.fullName && Boolean(errors.fullName)}
-                        helperText={touched.fullName && errors.fullName}
-                      />
-                      <TextField
-                        id="standard-basic"
-                        label="Email"
-                        name="email"
-                        fullWidth
-                        value={values.email}
-                        onChange={handleChange.bind(this)}
-                        error={touched.email && Boolean(errors.email)}
-                        helperText={touched.email && errors.email}
-                      />
+        {formregis === true && (
+          <Formik
+            initialValues={initialValuesRegis}
+            validationSchema={regisSchema}
+            onSubmit={onSubmitRegis}
+          >
+            {({ errors, touched, handleChange, values }) => (
+              <div className="forms-container">
+                <div className="signin-signup">
+                  <Form action="#" className="sign-up-form">
+                    <h2 className="title">Join Here</h2>
+                    <TextField
+                      id="standard-basic"
+                      label="Fullname"
+                      name="fullName"
+                      fullWidth={true}
+                      value={values.fullName}
+                      onChange={handleChange.bind(this)}
+                      error={touched.fullName && Boolean(errors.fullName)}
+                      helperText={touched.fullName && errors.fullName}
+                    />
+                    <TextField
+                      id="standard-basic"
+                      label="Email"
+                      name="email"
+                      fullWidth
+                      value={values.email}
+                      onChange={handleChange.bind(this)}
+                      error={touched.email && Boolean(errors.email)}
+                      helperText={touched.email && errors.email}
+                    />
 
-                      <TextField
-                        id="standard-basic"
-                        label="Password"
-                        type="password"
-                        name="password"
-                        fullWidth
-                        value={values.password}
-                        onChange={handleChange.bind(this)}
-                        error={touched.password && Boolean(errors.password)}
-                        helperText={touched.password && errors.password}
-                      />
-                      <TextField
-                        id="standard-basic"
-                        label="Confirm Password"
-                        type="password"
-                        name="confirmPassword"
-                        fullWidth
-                        value={values.confirmPassword}
-                        onChange={handleChange.bind(this)}
-                        error={
-                          touched.confirmPassword &&
-                          Boolean(errors.confirmPassword)
-                        }
-                        helperText={
-                          touched.confirmPassword && errors.confirmPassword
-                        }
-                      />
-                      <button type="submit" className="btn">
-                        Join Now
-                      </button>
-                      {/* <button type="submit" className="btn">
+                    <TextField
+                      id="standard-basic"
+                      label="Password"
+                      type="password"
+                      name="password"
+                      fullWidth
+                      value={values.password}
+                      onChange={handleChange.bind(this)}
+                      error={touched.password && Boolean(errors.password)}
+                      helperText={touched.password && errors.password}
+                    />
+                    <TextField
+                      id="standard-basic"
+                      label="Confirm Password"
+                      type="password"
+                      name="confirmPassword"
+                      fullWidth
+                      value={values.confirmPassword}
+                      onChange={handleChange.bind(this)}
+                      error={
+                        touched.confirmPassword &&
+                        Boolean(errors.confirmPassword)
+                      }
+                      helperText={
+                        touched.confirmPassword && errors.confirmPassword
+                      }
+                    />
+                    <button type="submit" className="btn">
+                      Join Now
+                    </button>
+                    {/* <button type="submit" className="btn">
                         Join Now
                       </button> */}
-                      <p className="social-text">
-                        Or Sign up with social platforms
-                      </p>
-                      {/* <div className="social-media">
+                    <p className="social-text">
+                      Or Sign up with social platforms
+                    </p>
+                    {/* <div className="social-media">
               <a href="#" className="social-icon">
                 <i className="fab fa-facebook-f"></i>
               </a>
@@ -238,51 +237,50 @@ function Landing(props) {
                 <i className="fab fa-linkedin-in"></i>
               </a>
             </div> */}
-                    </Form>
-                  </div>
+                  </Form>
                 </div>
-              )}
-            </Formik>
-          )}
+              </div>
+            )}
+          </Formik>
+        )}
 
-          <div className="panels-container">
-            <div className="panel left-panel">
-              <div className="content">
-                <h3>New here ?</h3>
-                <p>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Debitis, ex ratione. Aliquid!
-                </p>
-                <button
-                  className="btn transparent"
-                  id="sign-up-btn"
-                  onClick={onSwitchRegis}
-                >
-                  Join Now
-                </button>
-              </div>
-              <img src="img/log.svg" className="image" alt="" />
+        <div className="panels-container">
+          <div className="panel left-panel">
+            <div className="content">
+              <h3>New here ?</h3>
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Debitis, ex ratione. Aliquid!
+              </p>
+              <button
+                className="btn transparent"
+                id="sign-up-btn"
+                onClick={onSwitchRegis}
+              >
+                Join Now
+              </button>
             </div>
-            <div className="panel right-panel">
-              <div className="content">
-                <h3>One of us ?</h3>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Nostrum laboriosam ad deleniti.
-                </p>
-                <button
-                  className="btn transparent"
-                  id="sign-in-btn"
-                  onClick={onSwitchLogin}
-                >
-                  Log In
-                </button>
-              </div>
-              <img src="img/register.svg" className="image" alt="" />
-            </div>
+            <img src={LOGIN} className="image" alt="" />
           </div>
-        </Card>
-      )}
+          <div className="panel right-panel">
+            <div className="content">
+              <h3>One of us ?</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
+                laboriosam ad deleniti.
+              </p>
+              <button
+                className="btn transparent"
+                id="sign-in-btn"
+                onClick={onSwitchLogin}
+              >
+                Log In
+              </button>
+            </div>
+            <img src={REGIS} className="image" alt="" />
+          </div>
+        </div>
+      </Card>
     </>
   );
 }

@@ -40,7 +40,7 @@ import SwiperCore, {
 } from "swiper";
 import * as action from "../../redux/action";
 import { connect } from "react-redux";
-
+import moment from "moment";
 SwiperCore.use([Navigation, Pagination, Scrollbar, Thumbs, A11y]);
 
 class CardPost extends Component {
@@ -96,9 +96,19 @@ class CardPost extends Component {
         <Card key={post.id} className="post-container" raised={true}>
           <CardHeader
             avatar={
-              <Avatar aria-label="recipe" style={{ backgroundColor: "red" }}>
-                R
-              </Avatar>
+              post?.createdBy?.profile?.avatar === "default" ? (
+                <Avatar aria-label="recipe" style={{ backgroundColor: "blue" }}>
+                  S
+                </Avatar>
+              ) : (
+                <Avatar aria-label="recipe">
+                  <img
+                    src={post?.createdBy?.profile?.avatar}
+                    alt="foto-post"
+                    className="post-profile-image"
+                  />
+                </Avatar>
+              )
             }
             action={
               <IconButton
@@ -108,8 +118,8 @@ class CardPost extends Component {
                 <MoreVert />
               </IconButton>
             }
-            title={post.title}
-            subheader={post.createdBy.fullName}
+            title={post.createdBy.fullName}
+            subheader={moment(post?.createdAt).format("yyyy-MM-DD")}
           />
           <Hidden xsDown>
             <Swiper
@@ -121,7 +131,11 @@ class CardPost extends Component {
             >
               {post.photos.map((img) => (
                 <SwiperSlide>
-                  <img src={img.images} alt="card" className="card-image" />
+                  <img
+                    src={img.images}
+                    alt="card"
+                    className="image-post-card"
+                  />
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -134,7 +148,11 @@ class CardPost extends Component {
             >
               {post.photos.map((img) => (
                 <SwiperSlide>
-                  <img src={img.images} alt="card" className="card-image" />
+                  <img
+                    src={img.images}
+                    alt="card"
+                    className="image-post-card"
+                  />
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -142,7 +160,7 @@ class CardPost extends Component {
 
           <CardContent>
             <Typography variant="body2" color="textSecondary" component="p">
-              {post.description}
+              {post.title}
             </Typography>
           </CardContent>
           <CardActions disableSpacing>

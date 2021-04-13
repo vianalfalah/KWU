@@ -8,20 +8,25 @@ export const login = (body) => (dispatch) => {
     type: "LOGIN_START",
   });
 
-  request.then((response) => {
-    if (response && response.data.status === "Login Success") {
-      localStorage.setItem("token", response.data.data.user.token);
-      localStorage.setItem("user", JSON.stringify(response.data.data));
-      dispatch({
-        type: "LOGIN_SUCCESS",
-        payload: response.data.data,
-      });
-    } else {
+  request.then(
+    (response) => {
+      if (response && response.data.status === "Login Success") {
+        localStorage.setItem("token", response.data.data.user.token);
+        localStorage.setItem("user", JSON.stringify(response.data.data));
+        window.location.replace("/home");
+        dispatch({
+          type: "LOGIN_SUCCESS",
+          payload: response.data.data,
+        });
+      }
+    },
+    (err) => {
       dispatch({
         type: "FAILED_LOGIN",
+        payload: err.message,
       });
     }
-  });
+  );
 };
 
 export const register = (body) => (dispatch) => {
@@ -32,19 +37,25 @@ export const register = (body) => (dispatch) => {
     type: "REGIS_START",
   });
 
-  request.then((response) => {
-    if (response && response.data.status === "Register Success") {
-      dispatch({
-        type: "REGIS_SUCCESS",
-        payload: response.data.data,
-      });
-    } else {
+  request.then(
+    (response) => {
+      if (response && response.data.status === "Register Success") {
+        localStorage.setItem("token", response.data.data.user.token);
+        localStorage.setItem("user", JSON.stringify(response.data.data));
+        window.location.replace("/home");
+        dispatch({
+          type: "REGIS_SUCCESS",
+          payload: response.data.data,
+        });
+      }
+    },
+    (err) => {
       dispatch({
         type: "FAILED_REGIS",
-        payload: "error connection",
+        payload: "Gagal Regis",
       });
     }
-  });
+  );
 };
 
 export const logout = () => (dispatch) => {
