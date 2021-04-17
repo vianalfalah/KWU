@@ -49,12 +49,13 @@ const regisSchema = Yup.object({
     .oneOf([Yup.ref("password")], "Password does not match"),
 });
 
+const isLogin = localStorage.getItem("token");
+
 function Landing(props) {
   const { login, register } = props;
   const history = useHistory();
   const [formlogin, setLogin] = useState(true);
   const [formregis, setRegis] = useState(false);
-  const { isLogin } = useSelector((state) => state.auth);
 
   const onSwitchRegis = () => {
     setLogin(false);
@@ -86,6 +87,7 @@ function Landing(props) {
 
   return (
     <>
+      {isLogin && <Redirect to="/home" />}
       <Card className="container">
         {formlogin === true && (
           <Formik

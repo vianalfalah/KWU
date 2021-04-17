@@ -19,8 +19,7 @@ import BlockUi from "react-block-ui";
 import "react-block-ui/style.css";
 import UserP from "./pages/UserProfile/UserP";
 import Home from "./pages/Home/Home";
-
-// const isLogin = localStorage.getItem("token");
+import AllPost from "./pages/AllPost/AllPost";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +41,7 @@ function App() {
             {!isLogin && <Redirect to="/" />}
             <PrivateRoute exact path="/home" component={Home} />
             <PrivateRoute exact path="/profile" component={UserP} />
+            <PrivateRoute exact path="/posts" component={AllPost} />
           </Switch>
         </BlockUi>
       </Router>

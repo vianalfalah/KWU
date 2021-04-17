@@ -90,7 +90,10 @@ class CardPost extends Component {
   render() {
     let { moreInfo, comment, openShare, likeIt, options } = this.state;
     let { post } = this.props;
-    console.log(moreInfo);
+    const params = {
+      zoom: true,
+      autoHeight: true,
+    };
     return (
       <>
         <Card key={post.id} className="post-container" raised={true}>
@@ -145,6 +148,7 @@ class CardPost extends Component {
               spaceBetween={30}
               slidesPerView="auto"
               scrollbar={{ draggable: true }}
+              {...params}
             >
               {post.photos.map((img) => (
                 <SwiperSlide>

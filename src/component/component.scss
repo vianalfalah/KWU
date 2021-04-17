@@ -34,14 +34,20 @@
       object-position: 0 10%;
       // position: relative;
     }
-    .img-profile {
-      width: 30%;
-      // height: 20%;
+    .container-img-profile {
+      width: 90px;
+      height: 90px;
       position: absolute;
-      bottom: -34px;
+      top: 80px;
       left: 36%;
 
-      border-radius: 50%;
+      .img-profile {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 50%;
+        border-radius: 50%;
+      }
     }
   }
 }

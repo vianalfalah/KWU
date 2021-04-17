@@ -1,7 +1,10 @@
 import {
+  Box,
+  Button,
   Card,
   CardContent,
   CardMedia,
+  Divider,
   Grid,
   GridList,
   GridListTile,
@@ -98,15 +101,65 @@ class UserP extends Component {
                     </div>
                   </CardMedia>
                 </Card>
-                <Card>
-                  <Grid style={{ margin: 15 }}>
-                    <Grid container>
-                      <Typography>{profile?.user?.fullName}</Typography>
-                    </Grid>
-                    <Grid container>
-                      <Typography>
+                <Card className="container-info-profile">
+                  <Grid container direction="row">
+                    <Grid style={{ padding: 15 }} item xs={12} sm={6}>
+                      <Typography
+                        align="left"
+                        variant="h5"
+                        style={{ marginTop: 15 }}
+                      >
+                        {profile?.user?.fullName}
+                      </Typography>
+
+                      <Typography
+                        align="left"
+                        variant="h5"
+                        style={{ marginTop: 15 }}
+                      >
                         {profile?.user?.profile?.greeting}
                       </Typography>
+                    </Grid>
+                    <Grid
+                      item
+                      xs={12}
+                      sm={6}
+                      style={{ padding: 15 }}
+                      container
+                      direction="row"
+                      justify="center"
+                      alignItems="center"
+                    >
+                      <Card
+                        style={{
+                          border: "0.5px solid #00acee",
+                          borderRadius: 20,
+                        }}
+                      >
+                        <Grid container direction="row" justify="center">
+                          <CardContent>
+                            <Typography>
+                              {profile?.user?.posts?.length > 0
+                                ? profile?.user?.posts?.length
+                                : 0}
+                            </Typography>
+                            <Typography>Posts</Typography>
+                          </CardContent>
+
+                          <CardContent>
+                            <Typography>
+                              {profile?.user?.arts?.length > 0
+                                ? profile?.user?.arts?.length
+                                : 0}
+                            </Typography>
+                            <Typography>Arts</Typography>
+                          </CardContent>
+                          <CardContent>
+                            <Typography>100</Typography>
+                            <Typography>Followers</Typography>
+                          </CardContent>
+                        </Grid>
+                      </Card>
                     </Grid>
                   </Grid>
                 </Card>
@@ -127,13 +180,13 @@ class UserP extends Component {
                 </Swiper>
               </Card>
               <Card className="container-posts">
-                <GridList cellHeight={180} spacing={4}>
+                <GridList cellHeight={300} spacing={4}>
                   <GridListTile
                     key="Subheader"
                     cols={2}
                     style={{ height: "auto" }}
                   >
-                    <ListSubheader component="div">December</ListSubheader>
+                    <ListSubheader component="div">Your Posts</ListSubheader>
                   </GridListTile>
                   {profile?.user?.posts?.map((tile) => (
                     <GridListTile key={tile.id}>
@@ -142,7 +195,10 @@ class UserP extends Component {
                         title={tile.title}
                         // subtitle={<span>by: {tile.author}</span>}
                         actionIcon={
-                          <IconButton aria-label={`info about ${tile.title}`}>
+                          <IconButton
+                            aria-label={`info about ${tile.title}`}
+                            className="icon-btn"
+                          >
                             <InfoIcon />
                           </IconButton>
                         }

@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Box,
   Card,
   CardContent,
@@ -59,15 +60,18 @@ export default function Profile() {
               alt=""
               className="img-sampul"
             />
-            <img
-              src={
-                profile?.profile?.avatar === "default"
-                  ? "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png"
-                  : profile?.profile?.avatar
-              }
-              alt=""
-              className="img-profile"
-            />
+
+            <Avatar className="container-img-profile">
+              <img
+                src={
+                  profile?.profile?.avatar === "default"
+                    ? "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png"
+                    : profile?.profile?.avatar
+                }
+                alt=""
+                className="img-profile"
+              />
+            </Avatar>
           </div>
         </CardMedia>
         <CardHeader title={profile?.fullName}></CardHeader>

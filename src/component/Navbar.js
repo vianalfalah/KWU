@@ -80,6 +80,10 @@ export default function Navbar(props) {
     window.location.replace("/profile");
   };
 
+  const onSubmitPosts = () => {
+    window.location.replace("./posts");
+  };
+
   const open = Boolean(anchorEl);
   const openSearch = Boolean(search);
   const openNotif = Boolean(notif);
@@ -191,11 +195,9 @@ export default function Navbar(props) {
               <IconButton
                 aria-label="show 4 new mails"
                 color="inherit"
-                onClick={handleOpenMessage}
+                onClick={onSubmitPosts}
               >
-                <Badge badgeContent={4} color="secondary">
-                  <i className="fa fa-bookmark"></i>
-                </Badge>
+                <i className="fa fa-bookmark"></i>
               </IconButton>
             </Grid>
           </Hidden>
