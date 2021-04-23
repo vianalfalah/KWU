@@ -29,6 +29,7 @@ import Autocomplete, {
   createFilterOptions,
 } from "@material-ui/lab/Autocomplete";
 import Notifications from "./Notifications";
+import ExploreOutlinedIcon from "@material-ui/icons/ExploreOutlined";
 import { useDispatch } from "react-redux";
 import LOGO_SOBU from "../utils/images/logo.png";
 import LOGO_MINI from "../utils/images/logo_mini.png";
@@ -199,6 +200,15 @@ export default function Navbar(props) {
               >
                 <i className="fa fa-bookmark"></i>
               </IconButton>
+              <IconButton
+                edge="end"
+                aria-label="account of current user"
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+              >
+                <i className="fa fa-user-circle"></i>
+              </IconButton>
             </Grid>
           </Hidden>
           <Grid
@@ -292,7 +302,7 @@ export default function Navbar(props) {
                   <ListItemIcon>
                     <span className="fa fa-bookmark"></span>
                   </ListItemIcon>
-                  <ListItemText primary="Favorite" />
+                  <ListItemText primary="Explore" />
                 </ListItem>
                 <hr />
                 <ListItem button onClick={() => onSubmitLogout()}>

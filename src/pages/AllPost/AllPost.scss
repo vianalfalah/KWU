@@ -5,5 +5,16 @@
   .container-grid {
     width: 70vw;
     margin: auto;
+    .img-maping {
+      border: 2px solid #00acee;
+    }
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .posts-container {
+    .container-grid {
+      width: 100vw;
+    }
   }
 }

@@ -56,7 +56,7 @@ export default function Profile() {
         <CardMedia>
           <div className="profile-image">
             <img
-              src="https://awsimages.detik.net.id/community/media/visual/2021/03/07/genshin-impact-14_43.jpeg?w=700&q=90"
+              src="https://animalcorner.co.uk/wp-content/uploads/2015/02/morpho-butterfly-1.jpg"
               alt=""
               className="img-sampul"
             />

@@ -1,4 +1,4 @@
-import { apiPost, apiPut, apiPost2, apiPut2, apiGets } from "./api";
+import { apiPost, apiPut, apiPost3, apiPut2, apiGets } from "./api";
 import { URL } from "./../../config/api";
 
 export const getPosts = (body) => (dispatch) => {
@@ -21,4 +21,14 @@ export const getPosts = (body) => (dispatch) => {
       });
     }
   });
+};
+
+export const uploadPost = (body) => (dispatch) => {
+  let url = URL + "/post/add";
+  const request = apiPost3(url);
+  dispatch({
+    type: "ADD_POST_START",
+  });
+
+  request.then((response) => {});
 };

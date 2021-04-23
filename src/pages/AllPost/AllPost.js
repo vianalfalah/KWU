@@ -24,21 +24,18 @@ class AllPost extends Component {
         <Navbar />
         <Card className="posts-container">
           <Grid className="container-grid">
-            <ResponsiveMasonry
-              columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
-            >
-              <Masonry columnsCount={3}>
-                {post?.listPost?.posts?.map((img, i) => (
-                  <img
-                    key={i}
-                    src={img.photos[0]?.images}
-                    style={{ width: "100%", display: "block" }}
-                    alt=""
-                    onClick={() => this.handleClick()}
-                  />
-                ))}
-              </Masonry>
-            </ResponsiveMasonry>
+            <Masonry columnsCount={3}>
+              {post?.listPost?.posts?.map((img, i) => (
+                <img
+                  key={i}
+                  src={img.photos[0]?.images}
+                  style={{ width: "100%", display: "block" }}
+                  alt=""
+                  onClick={() => this.handleClick()}
+                  className="img-maping"
+                />
+              ))}
+            </Masonry>
           </Grid>
         </Card>
       </div>

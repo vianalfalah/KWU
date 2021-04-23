@@ -29,6 +29,7 @@ import SwiperCore, {
 } from "swiper";
 
 import "./UserP.scss";
+import user_setting from "../../utils/images/setting-user.png";
 
 SwiperCore.use([
   Navigation,
@@ -88,7 +89,7 @@ class UserP extends Component {
                   <CardMedia>
                     <div className="container-sampul">
                       <img
-                        src="https://awsimages.detik.net.id/community/media/visual/2021/03/07/genshin-impact-14_43.jpeg?w=700&q=90"
+                        src="https://animalcorner.co.uk/wp-content/uploads/2015/02/morpho-butterfly-1.jpg"
                         alt=""
                         className="img-sampul"
                       />
@@ -110,6 +111,12 @@ class UserP extends Component {
                         style={{ marginTop: 15 }}
                       >
                         {profile?.user?.fullName}
+                        <span>
+                          <i
+                            className="fa fa-cogs"
+                            style={{ marginLeft: 10 }}
+                          />
+                        </span>
                       </Typography>
 
                       <Typography
